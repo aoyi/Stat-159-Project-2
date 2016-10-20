@@ -1,0 +1,84 @@
+Summary Statistics for Income 
+
+Minimum       : 10.35 
+Maximum       : 186.63 
+Range         : 176.28 
+First Quantile: 21.01 
+Median        : 33.12 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 45.22 
+Std Dev       : 35.24 
+
+Summary Statistics for Limit 
+
+Minimum       : 855.00 
+Maximum       : 13913.00 
+Range         : 13058.00 
+First Quantile: 21.01 
+Median        : 4622.50 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 4735.60 
+Std Dev       : 2308.20 
+
+Summary Statistics for Rating 
+
+Minimum       : 93.00 
+Maximum       : 982.00 
+Range         : 889.00 
+First Quantile: 21.01 
+Median        : 344.00 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 354.94 
+Std Dev       : 154.72 
+
+Summary Statistics for Cards 
+
+Minimum       : 1.00 
+Maximum       : 9.00 
+Range         : 8.00 
+First Quantile: 21.01 
+Median        : 3.00 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 2.96 
+Std Dev       : 1.37 
+
+Summary Statistics for Age 
+
+Minimum       : 23.00 
+Maximum       : 98.00 
+Range         : 75.00 
+First Quantile: 21.01 
+Median        : 56.00 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 55.67 
+Std Dev       : 17.25 
+
+Summary Statistics for Education 
+
+Minimum       : 5.00 
+Maximum       : 20.00 
+Range         : 15.00 
+First Quantile: 21.01 
+Median        : 14.00 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 13.45 
+Std Dev       : 3.13 
+
+Summary Statistics for Balance 
+
+Minimum       : 0.00 
+Maximum       : 1999.00 
+Range         : 1999.00 
+First Quantile: 21.01 
+Median        : 459.50 
+Third Quantile: 57.47 
+IQR           : 36.46 
+Mean          : 520.01 
+Std Dev       : 459.76 
+
