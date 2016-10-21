@@ -25,25 +25,25 @@ stat159-fall2016-project2/
             regression-script.R
             session-info-script.R
     data/
-    	data-sets/
-	    Credit.csv
-	    scaled-credit.csv
-	    train-set.csv
-	    test-set.csv
-	eda-outputs/
-	    eda-output-qualitative.txt
-	    eda-output-quantitative.txt
-	    eda-output-correlation.txt
-	    eda-output-anova.txt
-	README.md
+        data-sets/
+	          Credit.csv
+	          scaled-credit.csv
+	          train-set.csv
+	          test-set.csv
+	      eda-outputs/
+	          eda-output-qualitative.txt
+	          eda-output-quantitative.txt
+	          eda-output-correlation.txt
+	          eda-output-anova.txt
+	      README.md
     images/
-	boxplot/
-	conditional-boxplot/
-	histograms/
-	scatterplot-matrix/
+	      boxplot/
+	      conditional-boxplot/
+	      histograms/
+	      scatterplot-matrix/
     report/
-    	report.Rmd
-    	report.pdf
+    	  report.Rmd
+    	  report.pdf
 ```
 
 ## Reproduction Steps

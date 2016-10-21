@@ -58,14 +58,14 @@ cor_matrix
 sink()
 
 histogram_generator <- function (data, var_name) {
-  file_path <- paste("images/Histogram-",var_name,".png", sep = "")
+  file_path <- paste("images/histogram/Histogram-",var_name,".png", sep = "")
   png(file_path)
   hist(data, main = paste("Histogram of", var_name), xlab = paste(var_name), col = "pink")
   dev.off()
 }
 
 boxplot_generator <- function (data, var_name) {
-  file_path <- paste("images/Boxplot-",var_name,".png", sep = "")
+  file_path <- paste("images/boxplot/Boxplot-",var_name,".png", sep = "")
   png(file_path)
   boxplot(data, main = paste("Boxplot of", var_name), xlab = paste(var_name), col = "purple")
   dev.off()
@@ -76,7 +76,7 @@ for (i in quantitative_variables) {
   boxplot_generator(data_set[,i], i)
 }
 
-png("images/scatterplot-matrix.png")
+png("images/scatterplot-matrix/scatterplot-matrix.png")
 pairs(data_set[, quantitative_variables])
 dev.off()
 
@@ -86,7 +86,7 @@ summary(fit)
 sink()
 
 condition_boxplot_generator <- function (var_name) {
-  file_path <- paste("images/Condition_boxplot_between_Balance_and",var_name,".png", sep = "")
+  file_path <- paste("images/conditional-boxplot/Condition-boxplot-between-Balance-and",var_name,".png", sep = "")
   png(file_path)
   boxplot( data_set$Balance ~ data_set[,var_name], 
            main = paste("Conditional boxplot between Balance and", var_name), 
