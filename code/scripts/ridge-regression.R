@@ -21,7 +21,7 @@ test.set.input <- as.matrix(test.set[, 2:12])
 
 ridge.test.predict <- predict(ridge.mod, s = small.lambda.index, newx = test.set.input)
 ridge.test <- as.matrix(test.set[,13])
-MSE.ridge <- mean(sum((ridge.test - ridge.test.predict)^2))
+MSE.ridge <- mean((ridge.test - ridge.test.predict)^2)
 
 dependent.full <- as.matrix(full.set$Balance)
 regressor.full <- as.matrix(full.set[c(-1, -13)])
