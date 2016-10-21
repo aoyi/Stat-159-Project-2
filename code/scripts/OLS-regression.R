@@ -1,9 +1,8 @@
 scaled_credit = read.csv("data/data-sets/scaled-credit.csv", header = T)
 
-
-OLS.mod = lm(Balance ~ Income + Limit + Rating + Cards + Age + Education
+ols.mod = lm(Balance ~ Income + Limit + Rating + Cards + Age + Education
              + GenderFemale + StudentYes + MarriedYes + EthnicityAsian
-             + EthnicityCaucasian, data = as.data.frame(scaled_credit))
-OLS.summary = summary(OLS.mod)
+             + EthnicityCaucasian, data = scaled_credit)
+ols.summary = summary(ols.mod)
 
-save(OLS.mod, OLS.summary,file = "data/regression-data/OLS-regression.RData")
+save(ols.mod, ols.summary,file = "data/regression-data/ols-regression.RData")
