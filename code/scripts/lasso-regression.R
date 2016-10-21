@@ -12,4 +12,9 @@ lasso.summary = summary(lasso.mod)
 
 save(lasso.mod, file = "data/regression-data/lasso-regression.RData")
 
-plot(lasso.mod)
+small.lambda.index <- lasso.mod$lambda.min
+
+png('images/regression-plot/lasso-regression-plot.png')
+plot(lasso.mod, main = "Lasso Regression Plot")
+dev.off()
+
