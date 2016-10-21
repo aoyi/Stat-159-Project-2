@@ -21,7 +21,7 @@ dev.off()
 
 lasso.test.predict=predict(lasso.mod ,s=small.lambda.index, newx=as.matrix(test.set[c(-1,-13)]))
 lasso.test = as.matrix(test.set[,13])
-MSE_lasso = mean(sum(lasso.test - lasso.test.predict)^2)
+MSE_lasso = mean((lasso.test - lasso.test.predict)^2)
 
 dependent_full = as.matrix(scaled_credit$Balance)
 regressor_full = as.matrix(scaled_credit[c(-1,-13)])
