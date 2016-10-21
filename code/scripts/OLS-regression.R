@@ -1,3 +1,5 @@
+# Generate least squares model
+
 scaled_credit = read.csv("data/data-sets/scaled-credit.csv", header = T)
 
 ols.mod = lm(Balance ~ Income + Limit + Rating + Cards + Age + Education
