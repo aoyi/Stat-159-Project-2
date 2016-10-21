@@ -1,8 +1,8 @@
-data_set <- read.csv("data/Credit.csv")
-quantitative_output_file <- "data/eda-output-quantitative.txt"
-qualitative_output_file <- "data/eda-output-qualitative.txt"
-correlation_output_file <- "data/eda-output-correlation.txt"
-anova_output_file <- "data/eda-output-anova.txt"
+data_set <- read.csv("data/data-sets/Credit.csv")
+quantitative_output_file <- "data/eda-outputs/eda-output-quantitative.txt"
+qualitative_output_file <- "data/eda-outputs/eda-output-qualitative.txt"
+correlation_output_file <- "data/eda-outputs/eda-output-correlation.txt"
+anova_output_file <- "data/eda-outputs/eda-output-anova.txt"
 
 output_quantitative_stats <- function(data, name, file) {
   data_min <- min(data)
