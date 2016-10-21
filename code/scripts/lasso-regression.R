@@ -3,7 +3,7 @@ library("glmnet")
 train.set = read.csv(file = "data/data-sets/train-set.csv", header = T)
 
 dependent <- as.matrix(train.set$Balance)
-regressor <- as.matrix(train.set[c(-1, -2, -13)])
+regressor <- as.matrix(train.set[c(-1, -13)])
 
 grid <- 10^seq(10, -2, length = 100)
 set.seed(1234)
