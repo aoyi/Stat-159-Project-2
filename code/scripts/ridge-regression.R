@@ -13,7 +13,7 @@ small.lambda.index <- ridge.mod$lambda.min
 
 save(ridge.mod,file = "data/regression-data/ridge-regression.RData")
 
-png('images/regression-plot/ridge-regression-plot')
+png('images/regression-plot/ridge-regression-plot.png')
 plot(ridge.mod, main = "Ridge Regressin Plot")
 dev.off()
 
