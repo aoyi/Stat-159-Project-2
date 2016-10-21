@@ -6,7 +6,7 @@ write.csv(scaled_credit, file = "data/data-sets/scaled-credit.csv")
 
 set.seed(123)
 train.sample = sample(1:400, 300, replace = F)
-train.set = credit[train.sample, ]
-test.set = credit[-train.sample, ]
+train.set = scaled_credit[train.sample, ]
+test.set = scaled_credit[-train.sample, ]
 write.csv(train.set, file = "data/data-sets/train-set.csv")
 write.csv(test.set, file = "data/data-sets/test-set.csv")
