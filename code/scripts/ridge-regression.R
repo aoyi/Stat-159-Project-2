@@ -1,10 +1,11 @@
 library("glmnet")
 
-scaled_credit = read.csv("data/data-sets/scaled-credit.csv", header = T)
+train.set = read.csv("data/data-sets/train-set.csv", header = T)
 
-dependent <- as.matrix(scaled_credit$Balance)
-regressor <- as.matrix(scaled_credit[c(-1, -2, -13)])
+dependent <- as.matrix(train.set$Balance)
+regressor <- as.matrix(train.set[c(-1, -13)])
 grid <- 10^seq(10, -2, length = 100)
+set.seed(1235)
 ridge.mod <- cv.glmnet(regressor, dependent, lambda = grid, intercept = FALSE, standardize = FALSE)
 ridge.summary <- summary(ridge.mod)
 
