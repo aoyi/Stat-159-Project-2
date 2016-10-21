@@ -17,7 +17,7 @@ validation.error <- pcr.mod$validation$PRESS
 best.m <- which(validation.error == min(validation.error))
 
 # Save pcr regression object and plot
-save(pcr.mod, pcr.summ, file = "data/regression-data/ridge-regression.RData")
+save(pcr.mod, pcr.summ, file = "data/regression-data/pcr-regression.RData")
 png('images/regression-plot/pcr-regression-plot.png')
 validationplot(pcr.fit, val.type = "MSEP", main = "PCR Regression Plot")
 dev.off()
