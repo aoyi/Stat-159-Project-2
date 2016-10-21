@@ -1,0 +1,13 @@
+# Regression Models
+
+## Shrinkage Methods
+
+Fit a model containing all p predictors using a techinique that constrains the coefficent estimates, which shrinks the coefficient estimates towards zero. Shrinking the coeficient estimates can significantly reduce their variance. 
+
+### Ridge Regression 
+
+Similar to least squares, but minimize RSS + lambda sum bj^2, where lambda is a tuning parameter. The second term is a shrinkage penalty and will be small when beta s are all close to 0. The tuning parameter controls the relative impact of these two terms on the regression coefficient estimates. When lambda = 0, ridge regression is the same as least squares. Ridge regression will produce a different set of coefficeient estimates for each value of lambda. We only shrink the estimated association of each variable with the response, not the intercept. beta 0 = y bar
+
+Advantage of Ridge Regression:
+
+Bias-variance trade-off. When lambda = 0, which is the least square situation, the variance is high but not bias. As lambda increases, variance decreases significantly but bias only sightly increase. MSE = variance + squared bias. For values of lambda up to aboutu 10, the variance decreases rapidly, with very little increase in bias, so MSE drops. 
