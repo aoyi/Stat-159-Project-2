@@ -1,5 +1,6 @@
 library("glmnet")
 
+scaled.credit = read.csv("data/data-sets/scaled-credit.csv", header = T)
 train.set = read.csv(file = "data/data-sets/train-set.csv", header = T)
 test.set = read.csv(file = "data/data-sets/test-set.csv", header = T)
 
@@ -21,9 +22,10 @@ dev.off()
 
 lasso.test.predict=predict(lasso.mod ,s=small.lambda.index, newx=as.matrix(test.set[c(-1,-13)]))
 lasso.test = as.matrix(test.set[,13])
-MSE_lasso = mean((lasso.test - lasso.test.predict)^2)
+MSE.lasso = mean((lasso.test - lasso.test.predict)^2)
 
-dependent_full = as.matrix(scaled_credit$Balance)
-regressor_full = as.matrix(scaled_credit[c(-1,-13)])
-lasso.full.fit = glmnet(regressor_full, dependent_full, alpha = 1, lambda = small.lambda.index, intercept = FALSE, standardize = FALSE)
-fitted_coef = coef(lasso.full.fit)
+dependent.full = as.matrix(scaled.credit$Balance)
+regressor.full = as.matrix(scaled.credit[c(-1,-13)])
+lasso.full.fit = glmnet(regressor.full, dependent.full, alpha = 1, lambda = small.lambda.index, intercept = FALSE, standardize = FALSE)
+fitted.coef = coef(lasso.full.fit)
+
