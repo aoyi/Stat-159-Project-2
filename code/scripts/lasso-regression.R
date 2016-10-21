@@ -10,4 +10,6 @@ set.seed(1234)
 lasso.mod <- cv.glmnet(regressor, dependent, alpha = 1, lambda = grid, intercept = FALSE, standardize = FALSE)
 lasso.summary = summary(lasso.mod)
 
-save(lasso.mod, lasso.summary, file = "data/regression-data/lasso-regression.RData")
+save(lasso.mod, file = "data/regression-data/lasso-regression.RData")
+
+plot(lasso.mod)
