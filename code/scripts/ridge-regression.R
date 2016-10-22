@@ -1,4 +1,4 @@
-library("glmnet")
+library(glmnet)
 
 # Read in data sets
 full.set = read.csv("data/data-sets/scaled-credit.csv", header = T)

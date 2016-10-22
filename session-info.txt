@@ -1,0 +1,17 @@
+R version 3.3.1 (2016-06-21)
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+Running under: OS X 10.12 (Sierra)
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] testthat_1.0.2 xtable_1.8-2   glmnet_2.0-5   foreach_1.4.3  Matrix_1.2-6   pls_2.5-0     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.7      lattice_0.20-33  codetools_0.2-14 crayon_1.3.2     digest_0.6.10    R6_2.2.0         grid_3.3.1      
+ [8] magrittr_1.5     evaluate_0.9     stringi_1.1.2    rmarkdown_1.0    iterators_1.0.8  tools_3.3.1      stringr_1.1.0   
+[15] htmltools_0.3.5 
