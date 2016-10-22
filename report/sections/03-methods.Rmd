@@ -11,3 +11,15 @@ Similar to least squares, but minimize RSS + lambda sum bj^2, where lambda is a 
 Advantage of Ridge Regression:
 
 Bias-variance trade-off. When lambda = 0, which is the least square situation, the variance is high but not bias. As lambda increases, variance decreases significantly but bias only sightly increase. MSE = variance + squared bias. For values of lambda up to aboutu 10, the variance decreases rapidly, with very little increase in bias, so MSE drops. 
+
+## Dimension Reduction Methods
+
+Transform the predictors and then fit a least squares model using the transformed variables. Reduce the problem of estimating the p+1 coefficients beta 0 to beta p to the simpler problem of estimating the M+1 coefficients theta0, theta1, thetaM, where Zm represent linear combinations of original p predictors, where M < p. 
+
+### Principal Components Regression
+
+The PCR approach involves constructing the first M principal components, Z1, ..., Zm, and then using these components as the predictors in a linear regression model that is fit using least squares. 
+
+Key assumption: the directions in which X1, Xp show the most variation are the directions that are associated with Y. If the assumption holds, then fitting a least squares model to Z1,..., Zm will lead to better results than fitting a least squares model to X1, Xp, since most or all of the information in the data that relates to the response is contained in Z1, ... Zm. -- mitigate overfitting.
+
+If the data were generated in such a way that many principal components are required in order to adequately model the response. In contrast, PCR will do well in cases when the first few pricipal components are sufficient to capture most of the variation in the predictors as well as the relationship with the response. 
