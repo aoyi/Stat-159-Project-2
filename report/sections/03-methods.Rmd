@@ -1,25 +1,30 @@
-# Regression Models
+# Methods
 
-## Shrinkage Methods
+## Least Squares Method
 
-Fit a model containing all p predictors using a techinique that constrains the coefficent estimates, which shrinks the coefficient estimates towards zero. Shrinking the coeficient estimates can significantly reduce their variance. 
+OLS estimators are considered as our base case in this project. OLS estimators are obtained by minimizing the sum of squares $RSS = \sum_{i=1}^n(y_i - \beta_0 - \sum_{j=1}^p(\beta_{j}x_{ij}))^2$ where $\beta_0, ..., \beta_p$ are our coefficient estimates. This is the most common regression method, and it works the best when we have homoskedastic and uncorrelated errors within the data.
+
+## Shrinkage Method
+
+Similar to the OLS method, shrinkage method also fits a model containg all independent variables but with a focus on constrains the coefficient estimates toward 0. By shrinking the coefficient estimates, the variance in estimators is significantly reduced compared to that of OLS. 
 
 ### Ridge Regression 
 
-Similar to least squares, but minimize RSS + lambda sum bj^2, where lambda is a tuning parameter. The second term is a shrinkage penalty and will be small when beta s are all close to 0. The tuning parameter controls the relative impact of these two terms on the regression coefficient estimates. When lambda = 0, ridge regression is the same as least squares. Ridge regression will produce a different set of coefficeient estimates for each value of lambda. We only shrink the estimated association of each variable with the response, not the intercept. beta 0 = y bar
+Instead of minimizing RSS, Ridge regression minimizes $RSS + \lambda \sum bj^2$. This regression abandons the requirement of an unbiased estimator in order to obtain a more precise prediction intervals. The addition term is a shrinkage penalty and since it's a sum of coefficient estimators, it will be small when $\beta$s are all close to 0. Here, $\lambda$ is called a tuning parameter and it controls how much RSS and shrinkage panelty affects the regression model. When $\lambda = 0$, ridge regression is the same as the least squares models. Becuase each $\lambda$ corresponds to a different set of coefficient estimates, we usually try a wide range of $\lambda$s and pick the best tuning parameter with the smallest MSE. 
 
-Advantage of Ridge Regression:
+One of the main feature of ridge regression is the bias-variance trade-off. When $\lambda = 0$, which is the least square model, the variance is high the estimators are unbiased. As lambda increases, variance decreases significantly but bias only sightly increase. Since $MSE = variance + squared bias$ along with the relative effect of the change, when $\lambda$ is smaller than 10, the variance drops rapidly, with very little increase in bias, so MSE decreases. 
 
-Bias-variance trade-off. When lambda = 0, which is the least square situation, the variance is high but not bias. As lambda increases, variance decreases significantly but bias only sightly increase. MSE = variance + squared bias. For values of lambda up to aboutu 10, the variance decreases rapidly, with very little increase in bias, so MSE drops. 
+### Lasso Regression
+
 
 ## Dimension Reduction Methods
 
-Transform the predictors and then fit a least squares model using the transformed variables. Reduce the problem of estimating the p+1 coefficients beta 0 to beta p to the simpler problem of estimating the M+1 coefficients theta0, theta1, thetaM, where Zm represent linear combinations of original p predictors, where M < p. 
+Dimension reduction method involves a transformation of variables before we fit in the least squares model. Instead of estimating $p + 1$ coefficients $\beta_0, ..., \beta_p$ when we have p regressors, it transform the data to $Z1, ..., Z_m, M < p$ where $Z_m$ represent linear combinations of the original predictors, so that we only need to estimate $M + 1$ coefficients $\theta_0, \theta_1, ..., \theta_M$. 
 
 ### Principal Components Regression
 
-The PCR approach involves constructing the first M principal components, Z1, ..., Zm, and then using these components as the predictors in a linear regression model that is fit using least squares. 
+In principal components regression, we first perform privipal components analysis on the original data which constructs M principal components, $Z_1, ..., Z_m$. Then, we use these components as the predictors and fit the least squares model to obtain coefficient estimates. The key assumption we hold in this regression model is that the directions in which $X_1, ..., X_p$ show the most variation are the directions that are associated with Y. If the assumption holds, then fitting a least squares model to $Z_1, ..., Z_m$ will lead to better results than fitting a least squares model to $X_1, ..., X_p$, since most or all of the information in the data that relates to the response is contained in $Z_1, ..., Z_m$. With fewer predictors, we can also reduce the risk of overfitting. PCR performs the best when the first few pricipal components are sufficient to capture most of the variation in the predictors and their relationship with the response.
 
-Key assumption: the directions in which X1, Xp show the most variation are the directions that are associated with Y. If the assumption holds, then fitting a least squares model to Z1,..., Zm will lead to better results than fitting a least squares model to X1, Xp, since most or all of the information in the data that relates to the response is contained in Z1, ... Zm. -- mitigate overfitting.
+### Partial Least Squares
 
-If the data were generated in such a way that many principal components are required in order to adequately model the response. In contrast, PCR will do well in cases when the first few pricipal components are sufficient to capture most of the variation in the predictors as well as the relationship with the response. 
+
