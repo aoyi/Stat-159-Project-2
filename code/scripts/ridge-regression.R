@@ -29,8 +29,8 @@ MSE.ridge <- mean((ridge.test - ridge.test.predict)^2)
 dependent.full <- as.matrix(full.set$Balance)
 regressor.full <- as.matrix(full.set[c(-1, -13)])
 ridge.full.fit <- glmnet(regressor.full, dependent.full, alpha = 0, lambda = small.lambda.index, standardize = FALSE, intercept = FALSE)
-fitted.coef <- coef(ridge.full.fit)
+ridge.fitted.coef <- coef(ridge.full.fit)
 
-save(small.lambda.index, MSE.ridge, fitted.coef, file = "data/regression-data/ridge-model-stats.RData")
+save(small.lambda.index, MSE.ridge, ridge.fitted.coef, file = "data/regression-data/ridge-model-stats.RData")
 
 
