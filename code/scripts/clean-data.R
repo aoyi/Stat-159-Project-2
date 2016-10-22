@@ -1,7 +1,7 @@
 credit = read.csv("data/data-sets/Credit.csv", header = T)
 temp_credit <- model.matrix(Balance ~ ., data = credit)
 new_credit <- cbind(temp_credit[ ,-1], Balance = credit$Balance)
-scaled_credit <- scale(new_credit, center = TRUE, scale = TRUE)
+scaled_credit <- scale(new_credit[ ,-1], center = TRUE, scale = TRUE)
 write.csv(scaled_credit, file = "data/data-sets/scaled-credit.csv")
 
 set.seed(12345)

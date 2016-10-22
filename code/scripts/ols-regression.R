@@ -14,7 +14,7 @@ save(ols.mod, ols.summary,file = "data/regression-data/ols-regression.RData")
 # Use the fitted model on testset to calculate MSE
 
 ols.test.predict <- predict(ols.mod, test.set[2:12])
-MSE.ols <- mean((ols.test.pred - test.set[,13])^2)
+MSE.ols <- mean((ols.test.predict - test.set[,13])^2)
 
 # Fit the model in the original dataset to find estimated coefficients
 
