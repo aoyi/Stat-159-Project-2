@@ -65,13 +65,31 @@ To reproduce the analysis:
 
   Can also reproduce the result step by step by running:
  
-  `make data` to download the data Advertising.csv in data folder. 
+  `make data` to download the data Credit.csv. 
   
-  `make eda` to perform elementary data analysis to obtain correlation matrix and histograms.
+  `make data_clean` to clean the raw data and separate it into test and train set for model fitting.
+  
+  `make eda` to perform exploratory data analysis and generate summary statistics and correlation information.
  
-  `make regression` to run multiple regression and generate corresponding regression objects and regression plots. 
+  `make ols` to run ols regression and generate ols estimators.
   
-  `make report` to reproduce the report
+  `make ridge` to run ridge regression and generate ridge estimators.
+  
+  `make lasso` to run lasso regression and generate lasso estimators.
+  
+  `make pcr` to run pcr regression and generate pcr estimators.
+  
+  `make plsr`to run plsr regression and generate plsr estimators.
+ 
+  `make regressions` to run all regression models.
+  
+  `make sesion` to generate session-info.txt including R's session information and version of tools used in the project
+  
+  `make report` to combine different sections of the report into one Rmd file and generate the pdf version.
+  
+  `make slides` to generate the slides.
+  
+  `make clean` to delete the pdf version of the report. 
 
 3. Run `make tests` to test regression functions included in `code/functions/regression_functions.R`.
 

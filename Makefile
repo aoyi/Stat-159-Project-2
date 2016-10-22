@@ -1,6 +1,6 @@
 # Run "make" to reproduce report
 
-.PHONY: 
+.PHONY: all data data_clean tests eda ols ridge lasso pcr plsr regressions report slides session clean
 
 # Set variables
 eda_script = code/scripts/eda-script.R
@@ -14,8 +14,12 @@ plsr_script = code/scripts/plsr-regression.R
 all: 
 
 # Data target: Download data from the url
-data: code/scripts/clean-data.R
+data: 
 	cd data/data-sets && curl -O http://www-bcf.usc.edu/~gareth/ISL/Credit.csv && Rscript $<
+	
+# data_clean: Clean data and separate into test and train set
+data_clean: code/scripts/clean-data.R
+	Rscript $<
 
 # Tests target: Run tests
 tests: code/test-that.R code/tests/test-regression.R
@@ -50,8 +54,12 @@ plsr: $(plsr_script) data
 	Rscript $(plsr_script)
 
 # regressions target: Run all 5 regressions
-regressions: ols ridge lasso pcr plsr
-	$<
+regressions: 
+	make ols
+	make ridge
+	make lasso
+	make pcr
+	make plsr
 
 # slides target: Generate slides
 slides:
