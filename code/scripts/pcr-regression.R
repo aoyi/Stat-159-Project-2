@@ -6,10 +6,10 @@ train.set = read.csv("data/data-sets/train-set.csv", header = T)
 test.set = read.csv("data/data-sets/test-set.csv", header = T)
 
 # Fit pcr model to training set
-set.seed(1236)
+set.seed(123)
 pcr.mod <- pcr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                + GenderFemale + StudentYes + MarriedYes + EthnicityAsian
-               + EthnicityCaucasian, data = train.set, scale = FALSE, validation = "CV")
+               + EthnicityCaucasian, data = train.set, validation = "CV")
 pcr.summ <- summary(pcr.mod)
 
 # Pick the m that will minimize the validation error 
