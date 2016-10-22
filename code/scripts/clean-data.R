@@ -4,7 +4,7 @@ new_credit <- cbind(temp_credit[ ,-1], Balance = credit$Balance)
 scaled_credit <- scale(new_credit[ ,-1], center = TRUE, scale = TRUE)
 write.csv(scaled_credit, file = "data/data-sets/scaled-credit.csv")
 
-set.seed(123)
+set.seed(12345)
 train.sample = sample(1:400, 300, replace = F)
 train.set = scaled_credit[train.sample, ]
 test.set = scaled_credit[-train.sample, ]
