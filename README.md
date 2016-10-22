@@ -59,7 +59,7 @@ To reproduce the analysis:
 
 1. Clone this project
 
-2. Use `cd` command in the terminal to enter the directory stat159-fall2016-project2.
+2. Navigate to the folder stat159-fall2016-project2.
 
 3. Run `make` in the terminal to regenerate all the output files, graphs and report. 
 
