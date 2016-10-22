@@ -19,19 +19,19 @@ best.m <- which(validation.error == min(validation.error))
 # Save pcr regression object and plot
 save(pcr.mod, pcr.summ, file = "data/regression-data/pcr-regression.RData")
 png('images/regression-plot/pcr-regression-plot.png')
-validationplot(pcr.fit, val.type = "MSEP", main = "PCR Regression Plot")
+validationplot(pcr.mod, val.type = "MSEP", main = "PCR Regression Plot")
 dev.off()
 
 # Use the best fitted m on testset to calculate MSE
 pcr.test.predict <- predict(pcr.mod, test.set[2:12], ncomp = best.m)
-MSE.pcr <- mean((pcr.test.pred - test.set[,13])^2)
+MSE.pcr <- mean((pcr.test.predict - test.set[,13])^2)
 
 # Fit the model in the original dataset to find estimated coefficients
 pcr.full.fit <- pcr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                 + GenderFemale + StudentYes + MarriedYes + EthnicityAsian
                 + EthnicityCaucasian, data = full.set, scale = FALSE, ncomp = best.m)
-fitted.coef <- coef(pcr.full.fit)
+pcr.fitted.coef <- coef(pcr.full.fit)
 
-save(best.m, MSE.pcr, fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
+save(best.m, MSE.pcr, pcr.fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
 
 
