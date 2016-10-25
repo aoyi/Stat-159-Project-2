@@ -1,0 +1,27 @@
+
+Analysis
+=========
+```{r, results = "asis", echo = F}
+library(xtable)
+load("../data/regression-data/ols-model-stats.RData")
+load("../data/regression-data/ridge-model-stats.RData")
+load("../data/regression-data/lasso-model-stats.RData")
+load("../data/regression-data/pcr-model-stats.RData")
+load("../data/regression-data/plsr-model-stats.RData")
+reg.coef.mat = cbind(as.matrix(ols.fitted.coef), ridge.fitted.coef[,1], lasso.fitted.coef[,1], rbind(0,as.matrix(pcr.fitted.coef)), rbind(0,as.matrix(plsr.fitted.coef)))
+colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
+print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods'), comment = FALSE)
+```
+
+```{r, results = "asis", echo = F}
+library(xtable)
+load("../data/regression-data/ols-regression.RData")
+load("../data/regression-data/ridge-regression.RData")
+load("../data/regression-data/lasso-regression.RData")
+load("../data/regression-data/pcr-regression.RData")
+load("../data/regression-data/plsr-regression.RData")
+MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
+colnames(MSE.val) = "MSE"
+print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods'), comment = FALSE)
+```
+
