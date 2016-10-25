@@ -1,3 +1,4 @@
+
 # Data
  
 The data we used in this analysis can be downloaded from http://www-bcf.usc.edu/~gareth/ISL/Credit.csv, which is provided by the textbook we refer to throughout the project, An Introduction to Statistical Learning. 
