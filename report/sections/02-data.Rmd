@@ -4,3 +4,4 @@
 The data we used in this analysis can be downloaded from http://www-bcf.usc.edu/~gareth/ISL/Credit.csv, which is provided by the textbook we refer to throughout the project, An Introduction to Statistical Learning. 
 
 After downloading the original data, in order to have comparable scales, we first standardize the data by centering around means and dividing by their respective standard deviation. Then, since we will use cross validation to improve the accuracy of our fit, we divide the data into training set and test set. We have 400 observations in total, so we randomly select 300 entries to be in the train set and the remaining 100 in the test set. 
+

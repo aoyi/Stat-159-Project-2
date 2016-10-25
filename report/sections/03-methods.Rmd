@@ -29,3 +29,4 @@ In principal components regression, we first perform privipal components analysi
 ### Partial Least Squares
 
 
+

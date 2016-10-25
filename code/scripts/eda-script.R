@@ -1,3 +1,6 @@
+
+library(FactoMineR)
+
 source("code/functions/eda-functions.R")
 
 data_set <- read.csv("data/data-sets/Credit.csv")
@@ -46,6 +49,12 @@ condition_boxplot_generator("Gender")
 condition_boxplot_generator("Student")
 condition_boxplot_generator("Ethnicity")
 condition_boxplot_generator("Married")
+
+# Overlapping vectors or vectors pointing out to the same direction, those variables share collinearity. 
+# If two variables are correlated, their regression coefficients should have the same sign. 
+png(file = "images/pca-plot/variables-factor-map.png")
+PCA(data_set[,c(2:7, 12)])
+dev.off()
 
 
 
