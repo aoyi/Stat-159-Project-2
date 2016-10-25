@@ -1,13 +1,13 @@
 
-Analysis
-=========
-```{r, results = "asis", echo = F}
+# Analysis
+
+```{r results= 'asis', echo = FALSE}
 library(xtable)
-load("../data/regression-data/ols-model-stats.RData")
-load("../data/regression-data/ridge-model-stats.RData")
-load("../data/regression-data/lasso-model-stats.RData")
-load("../data/regression-data/pcr-model-stats.RData")
-load("../data/regression-data/plsr-model-stats.RData")
+load("data/regression-data/ols-model-stats.RData")
+load("data/regression-data/ridge-model-stats.RData")
+load("data/regression-data/lasso-model-stats.RData")
+load("data/regression-data/pcr-model-stats.RData")
+load("data/regression-data/plsr-model-stats.RData")
 reg.coef.mat = cbind(as.matrix(ols.fitted.coef), ridge.fitted.coef[,1], lasso.fitted.coef[,1], rbind(0,as.matrix(pcr.fitted.coef)), rbind(0,as.matrix(plsr.fitted.coef)))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
 print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods'), comment = FALSE)
@@ -20,13 +20,13 @@ First, comparing the ols regression coefficients with the ridge regression coeff
 Second, comparing the lasso regression coefficients with the ridge regression coefficients, we can see that the lasso regression has several coefficients as zero. This is because lasso performs variable selection and yields model that involves only a subset of the variables. Lasso zeros out the coefficients of collinear variables. The advantage of lasso regression model over ridge regression model is that lasso regression method does both the parameter shrinkage and the variable selection and ridge regression will include all predictors in the final model and create a challenge in model interpretation. 
 
 
-```{r, results = "asis", echo = F}
+```{r results= 'asis', echo = FALSE}
 library(xtable)
-load("../data/regression-data/ols-regression.RData")
-load("../data/regression-data/ridge-regression.RData")
-load("../data/regression-data/lasso-regression.RData")
-load("../data/regression-data/pcr-regression.RData")
-load("../data/regression-data/plsr-regression.RData")
+load("data/regression-data/ols-regression.RData")
+load("data/regression-data/ridge-regression.RData")
+load("data/regression-data/lasso-regression.RData")
+load("data/regression-data/pcr-regression.RData")
+load("data/regression-data/plsr-regression.RData")
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
 print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods'), comment = FALSE)

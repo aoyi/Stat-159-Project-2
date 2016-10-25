@@ -1,3 +1,3 @@
 # Abstract
 
-In this project, we explore the differences between various muitiple regression methods and conclude on what approach should be used in order to fit our data better. 
+In this project, we explore the difference between various muitiple regression methods and conclude on what approach should be used in order to fit our data better. 
