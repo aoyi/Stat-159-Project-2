@@ -3,14 +3,15 @@
 
 ```{r results= 'asis', echo = FALSE}
 library(xtable)
+library(Matrix)
 load("data/regression-data/ols-model-stats.RData")
 load("data/regression-data/ridge-model-stats.RData")
 load("data/regression-data/lasso-model-stats.RData")
 load("data/regression-data/pcr-model-stats.RData")
 load("data/regression-data/plsr-model-stats.RData")
-reg.coef.mat = cbind(as.matrix(ols.fitted.coef), ridge.fitted.coef[,1], lasso.fitted.coef[,1], rbind(0,as.matrix(pcr.fitted.coef)), rbind(0,as.matrix(plsr.fitted.coef)))
+reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
-print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods'), comment = FALSE)
+print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5)), comment = FALSE)
 ```
 
 Comparing the regression coefficients of five regression methods, we can see that the coefficients of Income, Cards, Age, Education, GenderFemale, StudentYes, MarriedYes, EthinicityAsian and EthnicityCaucasian are relatively close for each regression method while the coefficients of Limit and Rating are relatively differed from each other. We can also see that the coefficients of Education, GenderFemale, MarriedYes, EthnicityAsian, and EthnicityCaucasion are very small and close to zero. 
@@ -29,7 +30,7 @@ load("data/regression-data/pcr-regression.RData")
 load("data/regression-data/plsr-regression.RData")
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods'), comment = FALSE)
+print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
 ```
 
 
