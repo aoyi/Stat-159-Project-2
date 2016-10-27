@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 
 # Analysis
 
@@ -47,5 +50,6 @@ lines(reg.coef.mat[,4],col = "green")
 points(reg.coef.mat[,5], col = "yellow")
 lines(reg.coef.mat[,5],col = "yellow")
 legend(10,0.9,c('OLS','Ridge','Lasso','PCR','PLSR'), lty = c(1,1,1,1,1), lwd = c(2.5,2.5,2.5,2.5,2.5), col = c("black","blue","red","green","yellow"),merge = T)
+abline(h = 0, lty = 3)
 ```
 
