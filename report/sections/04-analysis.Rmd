@@ -34,4 +34,18 @@ print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comm
 ```
 
 
+```{r}
+par(mfrow = c(1,1))
+plot(reg.coef.mat[,1], xlab = "Coefficients", ylab = "Value", main = "Trend Lines of the Coefficients")
+lines(reg.coef.mat[,1])
+points(reg.coef.mat[,2],col= "blue")
+lines(reg.coef.mat[,2],col = "blue")
+points(reg.coef.mat[,3], col = "red")
+lines(reg.coef.mat[,3],col = "red")
+points(reg.coef.mat[,4], col = "green")
+lines(reg.coef.mat[,4],col = "green")
+points(reg.coef.mat[,5], col = "yellow")
+lines(reg.coef.mat[,5],col = "yellow")
+legend(10,0.9,c('OLS','Ridge','Lasso','PCR','PLSR'), lty = c(1,1,1,1,1), lwd = c(2.5,2.5,2.5,2.5,2.5), col = c("black","blue","red","green","yellow"),merge = T)
+```
 
