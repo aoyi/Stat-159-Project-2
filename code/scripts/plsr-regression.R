@@ -6,7 +6,7 @@ train.set = read.csv(file = "data/data-sets/train-set.csv", header = T)
 test.set = read.csv(file = "data/data-sets/test-set.csv", header = T)
 
 # Fit plsr model to training set
-set.seed(12345)
+set.seed(1)
 plsr.mod = plsr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                 + GenderFemale + StudentYes + MarriedYes + EthnicityAsian
                 + EthnicityCaucasian, data = train.set,scale = FALSE, validation = "CV")
