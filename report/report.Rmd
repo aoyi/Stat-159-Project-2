@@ -1,3 +1,10 @@
+---
+title: "Statistics 159 Project 2 Report"
+author: "Aoyi Shan, Yukun He"
+date: "10/28/2016"
+output: pdf_document
+---
+
 # Abstract
 
 In this project, we explore the difference between various muitiple regression methods and conclude on what approach should be used in order to fit our data better. 
@@ -33,6 +40,12 @@ One of the main feature of ridge regression is the bias-variance trade-off. When
 
 ### Lasso Regression
 
+The major difference between Lasso and Ridge is that Lasso method aims to minimize $RSS$ + $\lambda \sum |{\beta_j}|$. This is to compensate for the fact that ridge regression with always generate a model with all predictors since it doesn't involve a process of variable reduction. Therefore, lasso improves on this by allowing some of the coefficient estimates to be exactly 0 if the tunning parameter is sufficiently large. Therefore, this variable selection process makes the model much easier to interpret with a reduced amount of predictors. 
+
+### Comparison between Ridge and Lasso
+
+In general, lasso is expected to outperform ridge when we have a small amount of predictors having significant coefficients, and the rest close to 0. Ridge regression will perform between when the response is affected by many regressors with equal-sized coefficients. 
+
 
 ## Dimension Reduction Methods
 
@@ -44,7 +57,7 @@ In principal components regression, we first perform privipal components analysi
 
 ### Partial Least Squares
 
-
+In comparison to PCR regression, which uses unsupervised method to dentify the principal components, partial least squares method takes the advantage of a supervised learning process. It uses the response variable Y to identify new vectors that are not only similar to existing regressors, but also select the ones that are related to the response. Therefore, as indicated in the textbook, the PLS approach attempts to find directions that help explain both the response and the predictors. 
 
 ---
 output: pdf_document
@@ -55,11 +68,11 @@ output: pdf_document
 ```{r results= 'asis', echo = FALSE}
 library(xtable)
 library(Matrix)
-load("data/regression-data/ols-model-stats.RData")
-load("data/regression-data/ridge-model-stats.RData")
-load("data/regression-data/lasso-model-stats.RData")
-load("data/regression-data/pcr-model-stats.RData")
-load("data/regression-data/plsr-model-stats.RData")
+load("../data/regression-data/ols-model-stats.RData")
+load("../data/regression-data/ridge-model-stats.RData")
+load("../data/regression-data/lasso-model-stats.RData")
+load("../data/regression-data/pcr-model-stats.RData")
+load("../data/regression-data/plsr-model-stats.RData")
 reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
 print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5)), comment = FALSE)
@@ -73,12 +86,11 @@ Second, comparing the lasso regression coefficients with the ridge regression co
 
 
 ```{r results= 'asis', echo = FALSE}
-library(xtable)
-load("data/regression-data/ols-regression.RData")
-load("data/regression-data/ridge-regression.RData")
-load("data/regression-data/lasso-regression.RData")
-load("data/regression-data/pcr-regression.RData")
-load("data/regression-data/plsr-regression.RData")
+load("../data/regression-data/ols-regression.RData")
+load("../data/regression-data/ridge-regression.RData")
+load("../data/regression-data/lasso-regression.RData")
+load("../data/regression-data/pcr-regression.RData")
+load("../data/regression-data/plsr-regression.RData")
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
 print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)

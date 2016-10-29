@@ -27,7 +27,8 @@ tests: code/test-that.R code/tests/test-regression.R
 
 # Report target: Produce reports by compiling Rmarkdown to pdf 
 report: report/sections/*.Rmd
-	cat report/sections/*.Rmd > report/report.Rmd && Rscript -e "library(rmarkdown); render('report/report.Rmd', 'pdf_document')"
+	cat report/sections/*.Rmd > report/report.Rmd
+	cd report && Rscript -e "library(rmarkdown); render('report.Rmd', 'pdf_document')"
 
 # Eda target: Run eda script to calculate summary statistics
 eda: data $(eda_script)

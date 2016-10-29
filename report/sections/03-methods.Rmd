@@ -17,6 +17,12 @@ One of the main feature of ridge regression is the bias-variance trade-off. When
 
 ### Lasso Regression
 
+The major difference between Lasso and Ridge is that Lasso method aims to minimize $RSS$ + $\lambda \sum |{\beta_j}|$. This is to compensate for the fact that ridge regression with always generate a model with all predictors since it doesn't involve a process of variable reduction. Therefore, lasso improves on this by allowing some of the coefficient estimates to be exactly 0 if the tunning parameter is sufficiently large. Therefore, this variable selection process makes the model much easier to interpret with a reduced amount of predictors. 
+
+### Comparison between Ridge and Lasso
+
+In general, lasso is expected to outperform ridge when we have a small amount of predictors having significant coefficients, and the rest close to 0. Ridge regression will perform between when the response is affected by many regressors with equal-sized coefficients. 
+
 
 ## Dimension Reduction Methods
 
@@ -28,5 +34,5 @@ In principal components regression, we first perform privipal components analysi
 
 ### Partial Least Squares
 
-
+In comparison to PCR regression, which uses unsupervised method to dentify the principal components, partial least squares method takes the advantage of a supervised learning process. It uses the response variable Y to identify new vectors that are not only similar to existing regressors, but also select the ones that are related to the response. Therefore, as indicated in the textbook, the PLS approach attempts to find directions that help explain both the response and the predictors. 
 

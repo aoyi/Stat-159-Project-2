@@ -1,0 +1,52 @@
+---
+title: "analysis"
+author: "Aoyi Shan"
+date: "10/28/2016"
+output: html_document
+---
+
+# Analysis
+
+```{r results= 'asis', echo = FALSE}
+library(xtable)
+library(Matrix)
+load("data/regression-data/ols-model-stats.RData")
+load("data/regression-data/ridge-model-stats.RData")
+load("data/regression-data/lasso-model-stats.RData")
+load("data/regression-data/pcr-model-stats.RData")
+load("data/regression-data/plsr-model-stats.RData")
+reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
+#print(reg.coef.mat)
+colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
+coeff_table <- xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5))
+print(class(coeff_table))
+print(coeff_table, comment = FALSE)
+```
+
+```{r results= 'asis', echo = FALSE}
+load("data/regression-data/ols-regression.RData")
+load("data/regression-data/ridge-regression.RData")
+load("data/regression-data/lasso-regression.RData")
+load("data/regression-data/pcr-regression.RData")
+load("data/regression-data/plsr-regression.RData")
+MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
+colnames(MSE.val) = "MSE"
+print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
+```
+
+
+```{r}
+par(mfrow = c(1,1))
+plot(reg.coef.mat[,1], xlab = "Coefficients", ylab = "Value", main = "Trend Lines of the Coefficients")
+lines(reg.coef.mat[,1])
+points(reg.coef.mat[,2],col= "blue")
+lines(reg.coef.mat[,2],col = "blue")
+points(reg.coef.mat[,3], col = "red")
+lines(reg.coef.mat[,3],col = "red")
+points(reg.coef.mat[,4], col = "green")
+lines(reg.coef.mat[,4],col = "green")
+points(reg.coef.mat[,5], col = "yellow")
+lines(reg.coef.mat[,5],col = "yellow")
+legend(10,0.9,c('OLS','Ridge','Lasso','PCR','PLSR'), lty = c(1,1,1,1,1), lwd = c(2.5,2.5,2.5,2.5,2.5), col = c("black","blue","red","green","yellow"),merge = T)
+abline(h = 0, lty = 3)
+```
