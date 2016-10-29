@@ -23,4 +23,4 @@ ols.full.fit <- lm(Balance ~ Income + Limit + Rating + Cards + Age + Education
                    + EthnicityCaucasian, data = full.set)
 ols.fitted.coef <- coef(ols.full.fit)
 
-save(MSE.ols, ols.fitted.coef, file = "data/regression-data/ols-model-stats.RData")
+save(MSE.ols, ols.full.fit, ols.fitted.coef, file = "data/regression-data/ols-model-stats.RData")

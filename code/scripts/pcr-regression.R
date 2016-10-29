@@ -14,7 +14,7 @@ pcr.summ <- summary(pcr.mod)
 
 # Pick the m that will minimize the validation error 
 validation.error <- pcr.mod$validation$PRESS
-best.m <- which(validation.error == min(validation.error))
+best.m.pcr <- which(validation.error == min(validation.error))
 
 # Save pcr regression object and plot
 save(pcr.mod, pcr.summ, file = "data/regression-data/pcr-regression.RData")
@@ -32,6 +32,6 @@ pcr.full.fit <- pcr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                 + EthnicityCaucasian, data = full.set, scale = FALSE, ncomp = best.m)
 pcr.fitted.coef <- coef(pcr.full.fit)
 
-save(best.m, MSE.pcr, pcr.fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
+save(best.m.pcr, MSE.pcr, pcr.full.fit, pcr.fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
 
 

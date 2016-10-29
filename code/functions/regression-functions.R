@@ -42,3 +42,5 @@ f_statistic <- function(reg_obj, data) {
 
 
 
+
+

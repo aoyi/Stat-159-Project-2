@@ -1,5 +1,5 @@
 ---
-output: pdf_document
+output: html_document
 ---
 
 # Analysis
@@ -25,7 +25,6 @@ Second, comparing the lasso regression coefficients with the ridge regression co
 
 
 ```{r results= 'asis', echo = FALSE}
-library(xtable)
 load("data/regression-data/ols-regression.RData")
 load("data/regression-data/ridge-regression.RData")
 load("data/regression-data/lasso-regression.RData")

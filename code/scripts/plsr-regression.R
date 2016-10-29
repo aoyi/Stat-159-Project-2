@@ -14,7 +14,7 @@ plsr.sum = summary(plsr.mod)
 
 # Pick the m that will minimize the validation error
 validation.error <- plsr.mod$validation$PRESS
-best.m <- which(validation.error == min(validation.error))
+best.m.plsr <- which(validation.error == min(validation.error))
 
 # Save plsr regression object and plot
 save(plsr.mod, plsr.sum, file = "data/regression-data/plsr-regression.RData")
@@ -32,4 +32,4 @@ plsr.full.fit <- plsr(Balance ~ Income + Limit + Rating + Cards + Age + Educatio
                     + EthnicityCaucasian, data = scaled.credit, scale = FALSE, ncomp = best.m)
 plsr.fitted.coef <- coef(plsr.full.fit)
 
-save(best.m, MSE.plsr, plsr.fitted.coef, file = "data/regression-data/plsr-model-stats.RData")
+save(best.m.plsr, MSE.plsr, plsr.fitted.coef, plsr.full.fit, file = "data/regression-data/plsr-model-stats.RData")

@@ -31,6 +31,6 @@ regressor.full <- as.matrix(full.set[c(-1, -13)])
 ridge.full.fit <- glmnet(regressor.full, dependent.full, alpha = 0, lambda = small.lambda.index, standardize = FALSE, intercept = FALSE)
 ridge.fitted.coef <- coef(ridge.full.fit)
 
-save(small.lambda.index, MSE.ridge, ridge.fitted.coef, file = "data/regression-data/ridge-model-stats.RData")
+save(small.lambda.index, MSE.ridge, ridge.full.fit, ridge.fitted.coef, file = "data/regression-data/ridge-model-stats.RData")
 
 

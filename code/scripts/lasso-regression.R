@@ -31,5 +31,5 @@ regressor.full = as.matrix(scaled.credit[c(-1,-13)])
 lasso.full.fit = glmnet(regressor.full, dependent.full, alpha = 1, lambda = small.lambda.index, intercept = FALSE, standardize = FALSE)
 lasso.fitted.coef = coef(lasso.full.fit)
 
-save(small.lambda.index, MSE.lasso, lasso.fitted.coef, file = "data/regression-data/lasso-model-stats.RData")
+save(small.lambda.index, MSE.lasso, lasso.full.fit, lasso.fitted.coef, file = "data/regression-data/lasso-model-stats.RData")
 
