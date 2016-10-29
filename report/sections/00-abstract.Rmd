@@ -3,6 +3,8 @@ title: "Statistics 159 Project 2 Report"
 author: "Aoyi Shan, Yukun He"
 date: "10/28/2016"
 output: pdf_document
+header-includes: 
+- \usepackage{float}
 ---
 
 # Abstract

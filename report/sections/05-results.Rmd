@@ -1,0 +1,5 @@
+
+
+# Results
+
+Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0. As we explained above, each model has its own feature and can lead to the optimal regression model under different circumstances. Here, for the data set we work on in this project, both our analysis and MSE shows that Partial Least Squares Regression model fits the best and leads to the most accurate prediction.  
