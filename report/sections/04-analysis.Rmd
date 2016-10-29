@@ -1,6 +1,3 @@
----
-output: html_document
----
 
 # Analysis
 
@@ -36,7 +33,7 @@ print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comm
 ```
 
 
-```{r}
+```{r results= 'asis', echo = FALSE}
 par(mfrow = c(1,1))
 plot(reg.coef.mat[,1], xlab = "Coefficients", ylab = "Value", main = "Trend Lines of the Coefficients")
 lines(reg.coef.mat[,1])
