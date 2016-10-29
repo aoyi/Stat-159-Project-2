@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 ---
 output: pdf_document
 ---
+=======
+>>>>>>> 4e32cdb64f70d53bd2e65e5f77031d49cd348931
 
 # Analysis
 
@@ -36,7 +39,7 @@ print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comm
 ```
 
 
-```{r}
+```{r results= 'asis', echo = FALSE}
 par(mfrow = c(1,1))
 plot(reg.coef.mat[,1], xlab = "Coefficients", ylab = "Value", main = "Trend Lines of the Coefficients")
 lines(reg.coef.mat[,1])
