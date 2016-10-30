@@ -74,7 +74,11 @@ The second step before conducting analysis is to process the raw data into the d
 
 ## Regression Models
 
-The third step is to build and evaluate a model on the processed data of size 400. We used sample() function to get a training set of size 300 to build the model and a test set of size 100 to assess the performance. For reproducibility purpose, we used function set.seed() before taking the sample.
+The third step is to build and evaluate a model on the processed data of size 400. We used sample() function to get a training set of size 300 to build the model and a test set of size 100 to assess the performance. For reproducibility purpose, we used function set.seed() before taking the sample. 
+
+After getting the training set and test set, we fitted a multiple linear regression model via Ordinary Least Squares (OLS) using the lm() function and set this as a benchmark. In addition to the OLS model, we used other four regression methods including Ridge regression (RR), Lasso regression (LR), Principal Components regression (PCR) and Partial Least Squares regression (PLSR) to fit the data set. To cooperate on the model building process and to make the workflow reproducible and efficient, we created a new feature branch for each of the four regression approaches. Each team member worked on different regression models on different branches and then merged them into the master branch. We have four feature branches named 'ridge', 'lasso', 'pcr' and 'plsr' and each member contributed to two branches. 
+
+For ridge regression method and lasso regression method, we used R package "glmnet" and we used cv.glmnet() function to conduct ten-fold cross-validation on the train set. When we applied the cv.glmnet() function, we set alpha = 0 for ridge regression and alpha = 1 for lasso regression and we set intercept = FALSE and standardize = FALSE for both regressions since we already mean-centered and standardized all the variables. After conducting ten-fold cross-validation on the train set, we got the best lambda, which is the smallest lambda for each regression.  
 
 
 ---
