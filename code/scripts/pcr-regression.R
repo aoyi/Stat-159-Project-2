@@ -23,13 +23,13 @@ validationplot(pcr.mod, val.type = "MSEP", main = "PCR Regression Plot")
 dev.off()
 
 # Use the best fitted m on testset to calculate MSE
-pcr.test.predict <- predict(pcr.mod, test.set[2:12], ncomp = best.m)
+pcr.test.predict <- predict(pcr.mod, test.set[2:12], ncomp = best.m.pcr)
 MSE.pcr <- mean((pcr.test.predict - test.set[,13])^2)
 
 # Fit the model in the original dataset to find estimated coefficients
 pcr.full.fit <- pcr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                 + GenderFemale + StudentYes + MarriedYes + EthnicityAsian
-                + EthnicityCaucasian, data = full.set, scale = FALSE, ncomp = best.m)
+                + EthnicityCaucasian, data = full.set, scale = FALSE, ncomp = best.m.pcr)
 pcr.fitted.coef <- coef(pcr.full.fit)
 
 save(best.m.pcr, MSE.pcr, pcr.full.fit, pcr.fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
