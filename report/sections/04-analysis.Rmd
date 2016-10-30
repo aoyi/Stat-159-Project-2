@@ -1,3 +1,15 @@
 
 # Analysis
 
+## Exploratory Data Analysis (EDA)
+
+The first step of conducting analysis is to understand the data by conducting exploratory data analysis. To conduct the EDA, we obtained descriptive statistics and summaries of all variables by using the R package "FactoMineR". For the quantitative variables, we wrote a function called output_quantitative_stats() to get minimum, maximum, range, median, first and third quartiles, IQR, Mean and Sd of all the quantitative variables including "Income", "Limit", "Rating", "Cards", "Age", "Education", and "Balance". Similarly, we wrote a function called output_qualitative_stats() to generate a table with both the frequency and the relative frequency of the qualitative variables including "Gender", "Student", "Married", and "Ethnicity". To understand the data better, we also want to generate some plots to visualize the data. We wrote the functions histogram_generator() and boxplot_generator() to generate histograms and boxplots of the quantitative variables and condition_boxplot_generator() to generate conditional boxplots between "Balance" and the qualitative variables. To study the association between "Balance" and the rest of predictors, we also obtained the correlation matrix of all quantitative variables using function cor(), the scatterplot matrix using function pairs(), the anova between "Balance" and all the qualitaive variables using function aov(), and the PCA plot for the quantitative variables using function PCA().
+
+## Pre-modeling Data Processing
+
+The second step before conducting analysis is to process the raw data into the data to be used in the further analysis. We used function model.matrix() to transform each categorical variable into dummy variables and function scale() to mean-center and standardize the data. We saved the processed data as scaled-credit.csv and we used the processed data for the model building process. 
+
+## Regression Models
+
+The third step is to build and evaluate a model on the processed data of size 400. We used sample() function to get a training set of size 300 to build the model and a test set of size 100 to assess the performance. For reproducibility purpose, we used function set.seed() before taking the sample.
+
