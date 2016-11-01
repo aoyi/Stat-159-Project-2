@@ -1,6 +1,3 @@
-
-library(FactoMineR)
-
 source("code/functions/eda-functions.R")
 
 data_set <- read.csv("data/data-sets/Credit.csv")
