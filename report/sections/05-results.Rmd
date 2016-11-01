@@ -82,13 +82,18 @@ print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression M
 ```
 
 
-
 ```{r results= 'asis', echo = FALSE}
+source("code/functions/regression-functions.R")
+full.set = read.csv("data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
+
+### DOESN"T WORK :(
+
+RSS.val = as.matrix(c("ols" = residual_sum_squares(ols.mod, full.set[,13]), "ridge" = residual_sum_squares(ridge.mod, full.set[,13]), "lasso" = residual_sum_squares(lasso.mod, full.set[,13]), "pcr" = residual_sum_squares(pcr.mod, full.set[,13]), "plsr" = residual_sum_squares(plsr.mod, full.set[,13])))
+
 colnames(MSE.val) = "MSE"
 print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
 ```
-
 
 
 ```{r results= 'asis', echo = FALSE}
