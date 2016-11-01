@@ -38,7 +38,7 @@ pairs(data_set[, quantitative_variables])
 dev.off()
 
 sink(file = anova_output_file)
-fit <- aov(Balance ~ Income + Limit + Rating + Cards + Age + Education, data = data_set)
+fit <- aov(Balance ~ Gender + Student + Married + Ethnicity, data = data_set)
 summary(fit)
 sink()
 
