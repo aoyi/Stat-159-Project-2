@@ -50,15 +50,6 @@ condition_boxplot_generator("Student")
 condition_boxplot_generator("Ethnicity")
 condition_boxplot_generator("Married")
 
-# Overlapping vectors or vectors pointing out to the same direction, those variables share collinearity. 
-# If two variables are correlated, their regression coefficients should have the same sign. 
-png(file = "images/pca-plot/variables-factor-map.png")
-PCA(data_set[,c(2:7, 12)])
-dev.off()
-
-
-
-
 
 
 
