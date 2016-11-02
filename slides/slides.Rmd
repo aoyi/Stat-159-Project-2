@@ -2,7 +2,9 @@
 title: 'Stat159 Project 2: Predictive Modeling Process'
 author: "Aoyi Shan, Yukun He"
 date: "11/1/2016"
-output: ioslides_presentation
+output: 
+    ioslides_presentation:
+       incremental: true
 ---
 
 ## Introduction
@@ -57,8 +59,7 @@ output: ioslides_presentation
 - It uses the response variable Y to identify new vectors that are not only similar to existing regressors, but also select the ones that are related to the response
 - PLS approach attempts to find directions that help explain both the response and the predictors
      
-## Results | OLS Regression
-
+## Results | OLS Regression Coefficient Estimates {.smaller .flexbox .vcenter}
 ```{r results= 'asis', echo = FALSE}
 library(knitr)
 library(xtable)
@@ -67,6 +68,8 @@ load("../data/regression-data/ols-model-stats.RData")
 load("../data/regression-data/ols-regression.RData")
 kable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(5,5,5,5))
 ```
+
+## Results | OLS Regression Results
 
 Since OLS would be the base case in this project, we also use 10-fold cross validation in building the OLS model by first using the train set to fit the model, calculate MSE in the test set and then fit the model we select to the entire data set. From the OLS regression output, we noticed some coefficients come with a big p-value, which means that they are not statistically significant. Therefore, we can conclude that the constant term, Education, Gender, Marital Status and Ethinicity don't belong to this regression. Also we noticed that among the statistically significant regressors, some has very small coefficients, so the main factors influencing Balance are Income, Limit and Rating.
 
@@ -77,7 +80,7 @@ load("../data/regression-data/ridge-model-stats.RData")
 load("../data/regression-data/ridge-regression.RData")
 ridge_coeff <- as.matrix(ridge.fitted.coef)
 colnames(ridge_coeff) <- "Estimate"
-print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'html')
+print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'latex')
 ```
 
 With Ridge regression, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.ridge`. As we have a relatively small $\lambda$, we expect to see that the estimation with ridge is very similar to that of OLS but a little bit smaller due to the shrinkage effect. 
