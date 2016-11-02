@@ -50,7 +50,7 @@ boxplot_generator <- function (data, var_name) {
 
 # Generate conditional boxplots and save in png format
 condition_boxplot_generator <- function (var_name) {
-  file_path <- paste("images/conditional-boxplot/Condition-boxplot-between-Balance-and",var_name,".png", sep = "")
+  file_path <- paste("images/conditional-boxplot/Condition-boxplot-between-Balance-and-",var_name,".png", sep = "")
   png(file_path)
   boxplot( data_set$Balance ~ data_set[,var_name], 
            main = paste("Conditional boxplot between Balance and", var_name), 
