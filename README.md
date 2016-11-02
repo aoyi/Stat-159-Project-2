@@ -43,11 +43,15 @@ stat159-fall2016-project2/
 
 ## Reproduction Steps
 
-Install R packages, `xtable` and `testthat`:
+Install R packages used in this project:
 
 ```
 install.packages("xtable")
 install.packages("testthat")
+install.packages("pls")
+install.packages("glmnet")
+install.packages("devtools")
+install.packages("knitr")
 ````
 
 To reproduce the analysis:
