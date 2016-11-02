@@ -5,7 +5,7 @@
 # The returned output is the value of RSS. 
 
 residual_sum_squares_ols <- function(reg_obj, data) {
-  sum((data - predict(reg_obj))^2)
+  sum((predict(reg_obj) - data)^2)
 }
 
 residual_sum_squares_ridge_lasso <- function(reg_obj, lambda, data_input, data_predict) {
