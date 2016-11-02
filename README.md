@@ -86,6 +86,7 @@ To reproduce the analysis:
   
   `make clean` to delete the pdf version of the report. 
 
+4. Run `make tests` to run unit tests for `regression-functions.R`. 
 
 ## Contributor
 

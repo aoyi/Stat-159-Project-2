@@ -67,6 +67,10 @@ slides:
 session:
 	bash session.sh
 
+# Tests target: Run unit test for regression_functions.R
+tests: code/test-that.R code/tests/test-regression.R
+	Rscript code/test-that.R 
+
 # Clean target: Delete report.pdf
 clean:
 	rm -f report/report.pdf
