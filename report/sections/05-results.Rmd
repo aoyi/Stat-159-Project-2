@@ -86,18 +86,8 @@ print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression M
 source("../code/functions/regression-functions.R")
 full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
-
-RSS.ols = residual_sum_squares_ols(ols.full.fit, full.set[,13])
-RSS.ridge = residual_sum_squares_ridge_lasso(ridge.full.fit, best.lambda.ridge, full.set[,2:12], full.set[,13])
-RSS.lasso = residual_sum_squares_ridge_lasso(lasso.full.fit, best.lambda.lasso, full.set[,2:12], full.set[,13])
-RSS.pcr = residual_sum_squares_pcr_plsr(pcr.full.fit, best.m.pcr, full.set[,2:12], full.set[,13])
-RSS.plsr = residual_sum_squares_pcr_plsr(plsr.full.fit, best.m.plsr, full.set[,2:12], full.set[,13])
-
-RSS.val = as.matrix(c("ols" = RSS.ols, "ridge" = RSS.ridge, "lasso" = RSS.lasso, "pcr" = RSS.pcr, "plsr" = RSS.plsr))
-
 colnames(MSE.val) = "MSE"
-colnames(RSS.val) = "RSS"
-print(xtable(cbind(MSE.val, RSS.val), caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
+print(xtable(MSE.val, caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
 ```
 
 

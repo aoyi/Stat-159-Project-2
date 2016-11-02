@@ -78,7 +78,7 @@ To reproduce the analysis:
  
   `make regressions` to run all regression models.
   
-  `make sesion` to generate session-info.txt including R's session information and version of tools used in the project
+  `make session` to generate session-info.txt including R's session information and version of tools used in the project
   
   `make report` to combine different sections of the report into one Rmd file and generate the pdf version.
   
