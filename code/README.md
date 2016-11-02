@@ -1,6 +1,6 @@
 ## Code README
 
-This code folder contains three sub-folders: functions, scripts tests.
+This code folder contains two sub-folders: functions and scripts.
 
 The functions folder contains eda-functions and regression-functions.
   
@@ -26,6 +26,4 @@ The scripts folder contains all of 8 scripts used in this project.
   `pcr-regression.R` fit a multiple linear regression model via Principal Components regression. 
  
   `plsr-regression.R` fit a multiple linear regression model via Partial Least Squares regression. 
-  
-The tests folder contains unit tests for eda-functions and for regression functions.
   

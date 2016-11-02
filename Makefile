@@ -1,6 +1,6 @@
 # Run "make" to reproduce report
 
-.PHONY: all data data_clean tests eda ols ridge lasso pcr plsr regressions report slides session clean
+.PHONY: all data data_clean eda ols ridge lasso pcr plsr regressions report slides session clean
 
 # Set variables
 data_set = data/data-sets/Credit.csv
@@ -21,10 +21,6 @@ data:
 # data_clean: Clean data and separate into test and train set
 data_clean: code/scripts/clean-data.R $(data_set)
 	Rscript $<
-
-# Tests target: Run tests
-tests: code/test-that.R code/tests/test-regression.R
-	Rscript code/test-that.R 
 
 # Report target: Produce reports by compiling Rmarkdown to pdf 
 report: report/sections/*.Rmd 
