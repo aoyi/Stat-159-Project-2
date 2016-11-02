@@ -67,11 +67,10 @@ regressions:
 
 # slides target: Generate slides
 slides:
-
-
+	
 # Session target: Run sessioninfo script
-session: code/scripts/session-info-script.R
-	Rscript $<
+session:
+	bash session.sh
 
 # Clean target: Delete report.pdf
 clean:
