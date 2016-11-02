@@ -23,7 +23,7 @@ validationplot(plsr.mod, val.type = "MSEP", main = "PLSR Regression Plot")
 dev.off()
 
 # Use the best fitted m on testset to calculate MSE
-plsr.test.predict <- predict(plsr.mod, test.set[c(-1,-13)],ncomp = best.m.plsr)
+plsr.test.predict <- predict(plsr.mod, test.set[c(-1,-13)], ncomp = best.m.plsr)
 MSE.plsr = mean((plsr.test.predict - test.set[,13])^2)
 
 # Fit the model in the original dataset to find estimated coefficients

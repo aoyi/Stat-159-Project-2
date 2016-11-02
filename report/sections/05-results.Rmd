@@ -83,16 +83,21 @@ print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression M
 
 
 ```{r results= 'asis', echo = FALSE}
-source("code/functions/regression-functions.R")
-full.set = read.csv("data/data-sets/scaled-credit.csv", header = T)
+source("../code/functions/regression-functions.R")
+full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 
-### DOESN"T WORK :(
+RSS.ols = residual_sum_squares_ols(ols.mod, full.set[,13])
+RSS.ridge = residual_sum_squares_ridge_lasso(ridge.mod, best.lambda.ridge, full.set[,2:12], full.set[,13])
+RSS.lasso = residual_sum_squares_ridge_lasso(lasso.mod, best.lambda.lasso, full.set[,2:12], full.set[,13])
+RSS.pcr = residual_sum_squares_pcr_plsr(pcr.mod, best.m.pcr, full.set[,2:12], full.set[,13])
+RSS.plsr = residual_sum_squares_pcr_plsr(plsr.mod, best.m.plsr, full.set[,2:12], full.set[,13])
 
-RSS.val = as.matrix(c("ols" = residual_sum_squares(ols.mod, full.set[,13]), "ridge" = residual_sum_squares(ridge.mod, full.set[,13]), "lasso" = residual_sum_squares(lasso.mod, full.set[,13]), "pcr" = residual_sum_squares(pcr.mod, full.set[,13]), "plsr" = residual_sum_squares(plsr.mod, full.set[,13])))
+RSS.val = as.matrix(c("ols" = RSS.ols, "ridge" = RSS.ridge, "lasso" = RSS.lasso, "pcr" = RSS.pcr, "plsr" = RSS.plsr))
 
 colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
+colnames(RSS.val) = "RSS"
+print(xtable(cbind(MSE.val, RSS.val), caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
 ```
 
 

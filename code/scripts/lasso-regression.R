@@ -21,7 +21,7 @@ plot(lasso.mod, main = "Lasso Regression Plot")
 dev.off()
 
 # Use the best fitted lambda on test set to calculate MSE
-lasso.test.predict=predict(lasso.mod ,s=best.lambda.lasso, newx=as.matrix(test.set[c(-1,-13)]))
+lasso.test.predict=predict(lasso.mod, s=best.lambda.lasso, newx=as.matrix(test.set[c(-1,-13)]))
 lasso.test = as.matrix(test.set[,13])
 MSE.lasso = mean((lasso.test - lasso.test.predict)^2)
 

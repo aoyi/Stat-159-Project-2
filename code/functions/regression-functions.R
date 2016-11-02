@@ -4,8 +4,16 @@
 # The function takes two inputs, a regression object, which is the output of lm() function and the observed values. 
 # The returned output is the value of RSS. 
 
-residual_sum_squares <- function(reg_obj, data) {
+residual_sum_squares_ols <- function(reg_obj, data) {
   sum((data - predict(reg_obj))^2)
+}
+
+residual_sum_squares_ridge_lasso <- function(reg_obj, lambda, data_input, data_predict) {
+  sum((data_predict - predict(reg_obj, s = lambda, newx = as.matrix(data_input)))^2)
+}
+
+residual_sum_squares_pcr_plsr <- function(reg_obj, m, data_input, data_predict) {
+  sum((data_predict - predict(reg_obj, ncomp = m, data_input))^2)
 }
 
 # Total Sum of Squares Function
@@ -38,6 +46,11 @@ f_statistic <- function(reg_obj, data) {
   p <- length(reg_obj$coefficients) - 1
   RSS <- residual_sum_squares(reg_obj, data)
   ((total_sum_squares(reg_obj, data) - RSS)/p) / (RSS/(length(data)-p-1))
+}
+
+residual_std_error <- function(reg_obj, data) {
+  p <- length(reg_obj$coefficients) - 1
+  sqrt(residual_sum_squares(reg_obj, data)/(length(data) - p - 1))
 }
 
 

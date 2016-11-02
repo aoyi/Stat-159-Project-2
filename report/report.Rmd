@@ -66,7 +66,7 @@ In comparison to PCR regression, which uses unsupervised method to dentify the p
 
 ## Exploratory Data Analysis (EDA)
 
-The first step of conducting analysis is to understand the data by conducting exploratory data analysis. To conduct the EDA, we obtained descriptive statistics and summaries of all variables by using the R package "FactoMineR". For the quantitative variables, we wrote a function called output_quantitative_stats() to get minimum, maximum, range, median, first and third quartiles, IQR, Mean and Sd of all the quantitative variables including "Income", "Limit", "Rating", "Cards", "Age", "Education", and "Balance". Similarly, we wrote a function called output_qualitative_stats() to generate a table with both the frequency and the relative frequency of the qualitative variables including "Gender", "Student", "Married", and "Ethnicity". To understand the data better, we also want to generate some plots to visualize the data. We wrote the functions histogram_generator() and boxplot_generator() to generate histograms and boxplots of the quantitative variables and condition_boxplot_generator() to generate conditional boxplots between "Balance" and the qualitative variables. To study the association between "Balance" and the rest of predictors, we also obtained the correlation matrix of all quantitative variables using function cor(), the scatterplot matrix using function pairs(), the anova between "Balance" and all the qualitaive variables using function aov(), and the PCA plot for the quantitative variables using function PCA().
+The first step of conducting analysis is to understand the data by conducting exploratory data analysis. To conduct the EDA, we obtained descriptive statistics and summaries of all variables. For the quantitative variables, we wrote a function called output_quantitative_stats() to get minimum, maximum, range, median, first and third quartiles, IQR, Mean and Sd of all the quantitative variables including "Income", "Limit", "Rating", "Cards", "Age", "Education", and "Balance". Similarly, we wrote a function called output_qualitative_stats() to generate a table with both the frequency and the relative frequency of the qualitative variables including "Gender", "Student", "Married", and "Ethnicity". To understand the data better, we also want to generate some plots to visualize the data. We wrote the functions histogram_generator() and boxplot_generator() to generate histograms and boxplots of the quantitative variables and condition_boxplot_generator() to generate conditional boxplots between "Balance" and the qualitative variables. To study the association between "Balance" and the rest of predictors, we also obtained the correlation matrix of all quantitative variables using function cor(), the scatterplot matrix using function pairs(), the anova between "Balance" and all the qualitative variables using function aov().
 
 ## Pre-modeling Data Processing
 
@@ -170,13 +170,23 @@ print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression M
 ```
 
 
-
 ```{r results= 'asis', echo = FALSE}
+source("../code/functions/regression-functions.R")
+full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
-colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
-```
 
+RSS.ols = residual_sum_squares_ols(ols.mod, full.set[,13])
+RSS.ridge = residual_sum_squares_ridge_lasso(ridge.mod, best.lambda.ridge, full.set[,2:12])
+RSS.lasso = residual_sum_squares_ridge_lasso(lasso.mod, best.lambda.lasso, full.set[,2:12])
+RSS.pcr = residual_sum_squares_pcr_plsr(pcr.mod, best.m.pcr, full.set[,2:12])
+RSS.plsr = residual_sum_squares_pcr_plsr(plsr.mod, best.m.plsr, full.set[,2:12])
+
+RSS.val = as.matrix(c("ols" = RSS.ols, "ridge" = RSS.ridge, "lasso" = RSS.lasso, "pcr" = RSS.pcr, "plsr" = RSS.plsr))
+
+colnames(MSE.val) = "MSE"
+colnames(RSS.val) = "RSS"
+print(xtable(cbind(MSE.val, RSS.val), caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
+```
 
 
 ```{r results= 'asis', echo = FALSE}
@@ -197,4 +207,4 @@ abline(h = 0, lty = 3)
 
 # Conclusion
 
-Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0. As we explained above, each model has its own feature and can lead to the optimal regression model under different circumstances. Here, for the data set we work on in this project, both our analysis and MSE shows that Partial Least Squares Regression model fits the best and leads to the most accurate prediction.  
+Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0. As we explained above, each model has its own feature and can lead to the optimal regression model under different circumstances. Here, for the data set we work on in this project, both our analysis and MSE shows that Lasso Regression model fits the best, followed by OLS and PlS, and appropriate models lead to more accurate prediction.  
