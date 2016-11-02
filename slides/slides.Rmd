@@ -2,9 +2,7 @@
 title: 'Stat159 Project 2: Predictive Modeling Process'
 author: "Aoyi Shan, Yukun He"
 date: "11/1/2016"
-output: 
-  ioslides_presentation:
-    incremental: true
+output: ioslides_presentation
 ---
 
 ## Introduction
@@ -16,49 +14,83 @@ output:
      - Lasso regression
      - Principal Components regression
      - Partial Least Squares regression
-- To evaluate how well each model fits the data, we perform 10-fold cross validation in the model construction process and select the model with minimum cross-validation errors in terms of the running parameter
+- We perform 10-fold cross validation in the model construction process and select the model with minimum cross-validation errors in terms of the running parameter
 
 ## Data
 
+- The data we used in this project is provided by the textbook _**An Introduction to Statistical Learning**_
+- The data set can be downloaded from <http://www-bcf.usc.edu/~gareth/ISL/Credit.csv>
+- Pre-modeling Data Processing:
+     - Dummy out categorical variables
+     - Mean centering and standardizing
+- Divide the data into training set and test set:
+     - Randomly select 300 entries to be the train set
+     - The remaining 100 entries is the test set
+     
+## Methods | Least Squares Method
 
+- OLS coefficients are set as benchmark to compare the coefficients of the other four regression methods
+- OLS estimators are obtained by minimizing the sum of squares $RSS = \sum_{i=1}^n(y_i - \beta_0 - \sum_{j=1}^p(\beta_{j}x_{ij}))^2$ where $\beta_0, ..., \beta_p$ are our coefficient estimates
+- OLS is the most common regression method, and it works the best when we have homoskedastic and uncorrelated errors within the data
 
+## Methods | Ridge Regression 
 
-# Results
+- Instead of minimizing RSS, Ridge regression minimizes $RSS + \lambda \sum bj^2$
+- $\lambda$ is called a tuning parameter and it controls how much RSS and shrinkage panelty affects the regression model
+- One of the main feature of ridge regression is the bias-variance trade-off
 
-## OLS Regression
+## Methods | Lasso Regression
+
+- The major difference between Lasso and Ridge is that Lasso method aims to minimize $RSS$ + $\lambda \sum |{\beta_j}|$
+- Ridge regression will always generate a model with all predictors since it doesn't involve a process of variable reduction
+- Lasso improves by allowing some of the coefficient estimates to be exactly 0 if the tunning parameter is sufficiently large
+- In general, lasso is expected to outperform ridge when we have a small amount of predictors having significant coefficients, and the rest close to 0
+
+## Methods | Principal Components Regression
+
+- The key assumption we hold in this regression model is that the directions in which $X_1, ..., X_p$ show the most variation are the directions that are associated with Y
+- PCR performs the best when the first few pricipal components are sufficient to capture most of the variation in the predictors and their relationship with the response
+
+## Methods | Partial Least Squares Regression
+
+- In comparison to PCR regression, which uses unsupervised method to dentify the principal components, partial least squares method takes the advantage of a supervised learning process
+- It uses the response variable Y to identify new vectors that are not only similar to existing regressors, but also select the ones that are related to the response
+- PLS approach attempts to find directions that help explain both the response and the predictors
+     
+## Results | OLS Regression
 
 ```{r results= 'asis', echo = FALSE}
+library(knitr)
 library(xtable)
 library(Matrix)
-options(xtable.comment = FALSE,
-        xtable.table.placement = "H")
 load("../data/regression-data/ols-model-stats.RData")
 load("../data/regression-data/ols-regression.RData")
-print(xtable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(0,5,5,5,5)), comment = FALSE)
+kable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(5,5,5,5))
 ```
 
 Since OLS would be the base case in this project, we also use 10-fold cross validation in building the OLS model by first using the train set to fit the model, calculate MSE in the test set and then fit the model we select to the entire data set. From the OLS regression output, we noticed some coefficients come with a big p-value, which means that they are not statistically significant. Therefore, we can conclude that the constant term, Education, Gender, Marital Status and Ethinicity don't belong to this regression. Also we noticed that among the statistically significant regressors, some has very small coefficients, so the main factors influencing Balance are Income, Limit and Rating.
 
 ## Ridge Regression 
 
-```{r results= 'asis', echo = FALSE}
+```{r xtable, results= 'asis', echo = FALSE}
 load("../data/regression-data/ridge-model-stats.RData")
 load("../data/regression-data/ridge-regression.RData")
 ridge_coeff <- as.matrix(ridge.fitted.coef)
 colnames(ridge_coeff) <- "Estimate"
-print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE)
+print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'html')
 ```
 
 With Ridge regression, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.ridge`. As we have a relatively small $\lambda$, we expect to see that the estimation with ridge is very similar to that of OLS but a little bit smaller due to the shrinkage effect. 
 
-## Lasso Regression 
+## Lasso Regression {.smaller}
 
-```{r results= 'asis', echo = FALSE}
+```{r, results= 'asis', echo = FALSE}
+library(knitr)
 load("../data/regression-data/lasso-model-stats.RData")
 load("../data/regression-data/lasso-regression.RData")
 lasso_coeff <- as.matrix(lasso.fitted.coef)
 colnames(lasso_coeff) <- "Estimate"
-print(xtable(lasso_coeff, caption = 'Lasso Coefficients', digits = c(0,5)), comment = FALSE)
+kable(lasso_coeff, caption = 'Lasso Coefficients', digits = 5)
 ```
 
 Lasso improves on Ridge because it adds the incentive to render statistically insignificant estimates to 0 by performing both variable selection and yields model that involves only a subset of the variables. In this case, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.lasso`. We can see that a significant improvement is that we have a number of regressors with a coefficient of 0 which makes the intepretation much easier. 
@@ -94,12 +126,14 @@ print(xtable(plsr_coeff, caption = 'PLS Coefficients',digits = c(0,5)), comment 
 Similarly, PLS regression is also trying to reduce the dimension of predictors, but in an supervised way. By comparing validation errors for different Ms, we decide that the best M to use here is `r best.m.plsr`. Since we originally have 11 predictors in this multiple regression, this is a huge improvement, so this method successfully find the major principal components dominating the change in Y, and therefore reduce the risk of overfitting and therefore obtain a better fit. 
 
 ## Combined All Coefficients Together
-
-```{r results= 'asis', echo = FALSE}
+```{r kable, results= 'asis', echo = FALSE}
+library(knitr)
 reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
-print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5)), comment = FALSE)
+kable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(5,5,5,5,5),type = 'html')
 ```
+
+
 
 
 ```{r results= 'asis', echo = FALSE}
