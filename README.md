@@ -15,33 +15,28 @@ stat159-fall2016-project2/
     LICENSE
     Makefile
     session-info.txt
+    session.sh
     code/
-        README.md
-        test-that.R
         functions/
-            regression-functions.R
         scripts/
-            eda-script.R
-            regression-script.R
-            session-info-script.R
+        tests/
+        README.md
     data/
         data-sets/
-	          Credit.csv
-	          scaled-credit.csv
-	          train-set.csv
-	          test-set.csv
 	      eda-outputs/
-	          eda-output-qualitative.txt
-	          eda-output-quantitative.txt
-	          eda-output-correlation.txt
-	          eda-output-anova.txt
+	      regression-data/
 	      README.md
     images/
 	      boxplot/
 	      conditional-boxplot/
-	      histograms/
+	      histogram/
 	      scatterplot-matrix/
+	      regression-plot/
+	      README.md
+	  slides/
+	      
     report/
+        sections/
     	  report.Rmd
     	  report.pdf
 ```
@@ -63,9 +58,9 @@ To reproduce the analysis:
 
 3. Run `make` in the terminal to regenerate all the output files, graphs and report. 
 
-  Can also reproduce the result step by step by running:
+   Can also reproduce the result step by step by running:
  
-  `make data` to download the data Credit.csv. 
+  `make data` to download the data Credit.csv.
   
   `make data_clean` to clean the raw data and separate it into test and train set for model fitting.
   
@@ -91,7 +86,6 @@ To reproduce the analysis:
   
   `make clean` to delete the pdf version of the report. 
 
-3. Run `make tests` to test regression functions included in `code/functions/regression_functions.R`.
 
 ## Contributor
 
