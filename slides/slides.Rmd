@@ -75,7 +75,7 @@ options(xtable.comment = FALSE,
         xtable.table.placement = "H")
 load("../data/regression-data/ols-model-stats.RData")
 load("../data/regression-data/ols-regression.RData")
-print(xtable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(0,5,5,5,5)), comment = FALSE, type = "html")
+print(xtable(ols.summary$coefficients,digits = c(0,5,5,5,5)), comment = FALSE, type = "html")
 ```
 
 ## Results | OLS Regression Analysis
@@ -91,7 +91,7 @@ load("../data/regression-data/ridge-model-stats.RData")
 load("../data/regression-data/ridge-regression.RData")
 ridge_coeff <- as.matrix(ridge.fitted.coef)
 colnames(ridge_coeff) <- "Estimate"
-print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'html')
+print(xtable(ridge_coeff, digits = c(0,5)), comment = FALSE, type = 'html')
 ```
 
 ## Results | Ridge Regression Analysis
@@ -106,7 +106,7 @@ load("../data/regression-data/lasso-model-stats.RData")
 load("../data/regression-data/lasso-regression.RData")
 lasso_coeff <- as.matrix(lasso.fitted.coef)
 colnames(lasso_coeff) <- "Estimate"
-print(xtable(lasso_coeff, caption = 'Lasso Coefficients', digits = c(0,5)), comment = FALSE,type = 'html')
+print(xtable(lasso_coeff, digits = c(0,5)), comment = FALSE,type = 'html')
 ```
 
 ## Results | Lasso Regression Analysis
@@ -124,7 +124,7 @@ dimnames(pcr_coeff) <- list(rownames(pcr_coeff, do.NULL = FALSE, prefix = "row")
                             colnames(pcr_coeff, do.NULL = FALSE, prefix = "col"))
 colnames(pcr_coeff) <- "Estimate"
 rownames(pcr_coeff) <- c("Income", "Limit", "Rating", "Cards", "Age", "Education", "GenderFemale", "StudentYes", "MarriedYes", "EthnicityAsian", "EthnicityCaucasian")
-print(xtable(pcr_coeff, caption = 'PCR Coefficients',digits = c(0,5)), comment = FALSE, type= 'html')
+print(xtable(pcr_coeff, digits = c(0,5)), comment = FALSE, type= 'html')
 ```
 
 ## Results | PCR Analysis
@@ -145,7 +145,7 @@ dimnames(plsr_coeff) <- list(rownames(plsr_coeff, do.NULL = FALSE, prefix = "row
                              colnames(plsr_coeff, do.NULL = FALSE, prefix = "col"))
 colnames(plsr_coeff) <- "Estimate"
 rownames(plsr_coeff) <- c("Income", "Limit", "Rating", "Cards", "Age", "Education", "GenderFemale", "StudentYes", "MarriedYes", "EthnicityAsian", "EthnicityCaucasian")
-print(xtable(plsr_coeff, caption = 'PLS Coefficients',digits = c(0,5)), comment = FALSE, type = "html")
+print(xtable(plsr_coeff, digits = c(0,5)), comment = FALSE, type = "html")
 ```
 
 ## Results | PLSR Analysis 
@@ -159,17 +159,15 @@ print(xtable(plsr_coeff, caption = 'PLS Coefficients',digits = c(0,5)), comment 
 ```{r results= 'asis', echo = FALSE}
 reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
-print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5)), comment = FALSE, type = "html")
+print(xtable(reg.coef.mat, digits = c(0,5,5,5,5,5)), comment = FALSE, type = "html")
 ```
 
 ## Comparing the MSE of 5 Regression Models 
 
 ```{r results= 'asis', echo = FALSE}
-source("../code/functions/regression-functions.R")
-full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE, type = "html")
+print(xtable(MSE.val, digits = 5), comment = FALSE, type = "html")
 ```
 
 ## Trend Lines of Coefficient Estimates of 5 Regression Models 
@@ -192,6 +190,6 @@ abline(h = 0, lty = 3)
 
 ## Conclusion
 
-- Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0
+- Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes vary a lot and a number of regressors have coefficients close to 0
 - Each model has its own feature and can lead to the optimal regression model under different circumstances
 - For the data set we work on in this project, both our analysis and MSE shows that Lasso Regression model fits the best, followed by OLS and PlS, and appropriate models lead to more accurate prediction

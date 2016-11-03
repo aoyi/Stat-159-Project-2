@@ -16,7 +16,7 @@ all: data data_clean eda session regressions report slides
 
 # Data target: Download data from the url
 data: 
-	cd data/data-sets&&curl -O http://www-bcf.usc.edu/~gareth/ISL/Credit.csv 
+	cd data/data-sets && curl -O http://www-bcf.usc.edu/~gareth/ISL/Credit.csv 
 	
 # data_clean: Clean data and separate into test and train set
 data_clean: code/scripts/clean-data.R $(data_set)

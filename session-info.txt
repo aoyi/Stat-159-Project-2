@@ -71,7 +71,7 @@ loaded via a namespace (and not attached):
  language (EN)                        
  collate  en_US.UTF-8                 
  tz       America/Los_Angeles         
- date     2016-11-01                  
+ date     2016-11-02                  
 
  package   * version date       source        
  codetools   0.2-14  2015-07-15 CRAN (R 3.3.1)

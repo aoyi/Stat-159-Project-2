@@ -83,11 +83,9 @@ print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression M
 
 
 ```{r results= 'asis', echo = FALSE}
-source("../code/functions/regression-functions.R")
-full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
+print(xtable(MSE.val, caption = 'MSE of 5 Regression Methods', digits = 5), comment = FALSE)
 ```
 
 
