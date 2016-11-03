@@ -17,42 +17,41 @@ stat159-fall2016-project2/
     session-info.txt
     session.sh
     code/
-        README.md
-        functions/
-          ...
-        scripts/
-          ...
-        tests/
-          ...
+      README.md
+      functions/
+        ...
+      scripts/
+        ...
+      tests/
+        ...
     data/
-        README.md
-        data-sets/
-          ...
-	      eda-outputs/
-	        ...
-	      regression-data/
-	        ...
-	      
+      README.md
+      data-sets/
+        ...
+      eda-outputs/
+	      ...
+      regression-data/
+	      ...
     images/
-        README.md
-	      boxplot/
-	        ...
-	      conditional-boxplot/
-	        ...
-	      histogram/
-	        ...
-	      scatterplot-matrix/
-	        ...
-	      regression-plot/
-	        ...
+      README.md
+      boxplot/
+        ...
+      conditional-boxplot/
+        ...
+      histogram/
+        ...
+      scatterplot-matrix/
+	      ...
+      regression-plot/
+	      ...
 	  slides/
-	      slides.html
-	      slides.Rmd
+	    slides.html
+	    slides.Rmd
     report/
-        report.Rmd
-    	  report.pdf
-        sections/
-          ...
+      report.Rmd
+      report.pdf
+      sections/
+        ...
        
 ```
 
@@ -71,7 +70,7 @@ install.packages("knitr")
 
 To reproduce the analysis:
 
-1. Clone this project
+1. Clone this project.
 
 2. Navigate to the folder stat159-fall2016-project2.
 
