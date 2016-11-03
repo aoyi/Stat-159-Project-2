@@ -18,25 +18,38 @@ stat159-fall2016-project2/
     session.sh
     code/
         functions/
+          ...
         scripts/
+          ...
         tests/
+          ...
         README.md
     data/
         data-sets/
+          ...
 	      eda-outputs/
+	        ...
 	      regression-data/
+	        ...
 	      README.md
     images/
 	      boxplot/
+	        ...
 	      conditional-boxplot/
+	        ...
 	      histogram/
+	        ...
 	      scatterplot-matrix/
+	        ...
 	      regression-plot/
+	        ...
 	      README.md
 	  slides/
-	      
+	      slides.html
+	      slides.Rmd
     report/
         sections/
+          ...
     	  report.Rmd
     	  report.pdf
 ```
