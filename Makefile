@@ -53,7 +53,6 @@ plsr: $(plsr_script) $(data_set)
 
 # regressions target: Run all 5 regressions
 regressions: 
-	make data
 	make ols
 	make ridge
 	make lasso
