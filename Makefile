@@ -62,6 +62,7 @@ regressions:
 
 # slides target: Generate slides
 slides:
+	Rscript -e "library(rmarkdown); render('slides/slides.Rmd', 'ioslides_presentation')"
 	
 # Session target: Run sessioninfo script
 session:
