@@ -3,8 +3,8 @@ title: 'Stat159 Project 2: Predictive Modeling Process'
 author: "Aoyi Shan, Yukun He"
 date: "11/1/2016"
 output: 
-    ioslides_presentation:
-       incremental: true
+  ioslides_presentation:
+    incremental: true
 ---
 
 ## Introduction
@@ -58,47 +58,63 @@ output:
 - In comparison to PCR regression, which uses unsupervised method to dentify the principal components, partial least squares method takes the advantage of a supervised learning process
 - It uses the response variable Y to identify new vectors that are not only similar to existing regressors, but also select the ones that are related to the response
 - PLS approach attempts to find directions that help explain both the response and the predictors
+
+## Model Building Process
+
+- Use 10-fold cross validation in building each regression model
+- Use the train set to fit the model
+- Calculate MSE in the test set 
+- Fit the model we select to the entire data set
      
-## Results | OLS Regression Coefficient Estimates {.smaller .flexbox .vcenter}
+## Results | OLS Regression Coefficient Estimates 
+
 ```{r results= 'asis', echo = FALSE}
-library(knitr)
 library(xtable)
 library(Matrix)
+options(xtable.comment = FALSE,
+        xtable.table.placement = "H")
 load("../data/regression-data/ols-model-stats.RData")
 load("../data/regression-data/ols-regression.RData")
-kable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(5,5,5,5))
+print(xtable(ols.summary$coefficients, caption = 'OLS Coefficients',digits = c(0,5,5,5,5)), comment = FALSE, type = "html")
 ```
 
-## Results | OLS Regression Results
+## Results | OLS Regression Analysis
 
-Since OLS would be the base case in this project, we also use 10-fold cross validation in building the OLS model by first using the train set to fit the model, calculate MSE in the test set and then fit the model we select to the entire data set. From the OLS regression output, we noticed some coefficients come with a big p-value, which means that they are not statistically significant. Therefore, we can conclude that the constant term, Education, Gender, Marital Status and Ethinicity don't belong to this regression. Also we noticed that among the statistically significant regressors, some has very small coefficients, so the main factors influencing Balance are Income, Limit and Rating.
+- Some coefficients come with a big p-value, which means that they are not statistically significant
+- We can conclude that the constant term, Education, Gender, Marital Status and Ethinicity don't belong to this regression
+- Among the statistically significant regressors, some has very small coefficients, so the main factors influencing Balance are Income, Limit and Rating
 
-## Ridge Regression 
+## Results | Ridge Regression Coefficient Estimates 
 
-```{r xtable, results= 'asis', echo = FALSE}
+```{r results= 'asis', echo = FALSE}
 load("../data/regression-data/ridge-model-stats.RData")
 load("../data/regression-data/ridge-regression.RData")
 ridge_coeff <- as.matrix(ridge.fitted.coef)
 colnames(ridge_coeff) <- "Estimate"
-print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'latex')
+print(xtable(ridge_coeff, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE, type = 'html')
 ```
 
-With Ridge regression, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.ridge`. As we have a relatively small $\lambda$, we expect to see that the estimation with ridge is very similar to that of OLS but a little bit smaller due to the shrinkage effect. 
+## Results | Ridge Regression Analysis
 
-## Lasso Regression {.smaller}
+- With Ridge regression, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.ridge`
+- As we have a relatively small $\lambda$, we expect to see that the estimation with ridge is very similar to that of OLS but a little bit smaller due to the shrinkage effect 
 
-```{r, results= 'asis', echo = FALSE}
-library(knitr)
+## Results | Lasso Regression Coefficient Estimates 
+
+```{r results= 'asis', echo = FALSE}
 load("../data/regression-data/lasso-model-stats.RData")
 load("../data/regression-data/lasso-regression.RData")
 lasso_coeff <- as.matrix(lasso.fitted.coef)
 colnames(lasso_coeff) <- "Estimate"
-kable(lasso_coeff, caption = 'Lasso Coefficients', digits = 5)
+print(xtable(lasso_coeff, caption = 'Lasso Coefficients', digits = c(0,5)), comment = FALSE,type = 'html')
 ```
 
-Lasso improves on Ridge because it adds the incentive to render statistically insignificant estimates to 0 by performing both variable selection and yields model that involves only a subset of the variables. In this case, the $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.lasso`. We can see that a significant improvement is that we have a number of regressors with a coefficient of 0 which makes the intepretation much easier. 
+## Results | Lasso Regression Analysis
 
-## PCR Regression 
+- The $\lambda$ we found that results in the smallest validation error is $\lambda$ = `r best.lambda.lasso`
+- We can see that a significant improvement is that we have a number of regressors with a coefficient of 0 which makes the intepretation much easier
+
+## Results | PCR Coefficient Estimates  
 
 ```{r results= 'asis', echo = FALSE}
 load("../data/regression-data/pcr-model-stats.RData")
@@ -108,12 +124,18 @@ dimnames(pcr_coeff) <- list(rownames(pcr_coeff, do.NULL = FALSE, prefix = "row")
                             colnames(pcr_coeff, do.NULL = FALSE, prefix = "col"))
 colnames(pcr_coeff) <- "Estimate"
 rownames(pcr_coeff) <- c("Income", "Limit", "Rating", "Cards", "Age", "Education", "GenderFemale", "StudentYes", "MarriedYes", "EthnicityAsian", "EthnicityCaucasian")
-print(xtable(pcr_coeff, caption = 'PCR Coefficients',digits = c(0,5)), comment = FALSE)
+print(xtable(pcr_coeff, caption = 'PCR Coefficients',digits = c(0,5)), comment = FALSE, type= 'html')
 ```
 
-With PCR, we mainly focus on dimension reduction by unsupervised learning. By comparing validation errors for different Ms, we decide that the best M to use here is `r best.m.pcr`. Since we only have 11 predictors in this multiple regression, it is not a huge change, so that explains why PCR is very close to OLS. Therefore, we can say that the dimension of predictors for this regression almost cannot be reduced, there doesn't exist major principal components dominating the change in the response variable, so PCR doesn't help to improve that much on the OLS estimation. 
+## Results | PCR Analysis
 
-## PLS Regression 
+- With PCR, we mainly focus on dimension reduction by unsupervised learning. 
+- By comparing validation errors for different Ms, we decide that the best M to use here is `r best.m.pcr`
+- Since we only have 11 predictors in this multiple regression, it is not a huge change, so that explains why PCR is very close to OLS
+- The dimension of predictors for this regression almost cannot be reduced, there doesn't exist major principal components dominating the change in the response variable
+- PCR doesn't help to improve that much on the OLS estimation 
+
+## Results | PLSR Coefficient Estimates 
 
 ```{r results= 'asis', echo = FALSE}
 load("../data/regression-data/plsr-model-stats.RData")
@@ -123,30 +145,34 @@ dimnames(plsr_coeff) <- list(rownames(plsr_coeff, do.NULL = FALSE, prefix = "row
                              colnames(plsr_coeff, do.NULL = FALSE, prefix = "col"))
 colnames(plsr_coeff) <- "Estimate"
 rownames(plsr_coeff) <- c("Income", "Limit", "Rating", "Cards", "Age", "Education", "GenderFemale", "StudentYes", "MarriedYes", "EthnicityAsian", "EthnicityCaucasian")
-print(xtable(plsr_coeff, caption = 'PLS Coefficients',digits = c(0,5)), comment = FALSE)
+print(xtable(plsr_coeff, caption = 'PLS Coefficients',digits = c(0,5)), comment = FALSE, type = "html")
 ```
 
-Similarly, PLS regression is also trying to reduce the dimension of predictors, but in an supervised way. By comparing validation errors for different Ms, we decide that the best M to use here is `r best.m.plsr`. Since we originally have 11 predictors in this multiple regression, this is a huge improvement, so this method successfully find the major principal components dominating the change in Y, and therefore reduce the risk of overfitting and therefore obtain a better fit. 
+## Results | PLSR Analysis 
 
-## Combined All Coefficients Together
-```{r kable, results= 'asis', echo = FALSE}
-library(knitr)
+- Similarly, PLS regression is also trying to reduce the dimension of predictors, but in an supervised way
+- By comparing validation errors for different Ms, we decide that the best M to use here is `r best.m.plsr`
+- This method successfully find the major principal components dominating the change in Y, and therefore reduce the risk of overfitting and therefore obtain a better fit
+
+## Comparing the Coefficient Estimates for 5 Regression Models 
+
+```{r results= 'asis', echo = FALSE}
 reg.coef.mat = cbind(ols.fitted.coef, as.numeric(ridge.fitted.coef), as.numeric(lasso.fitted.coef), c(0,pcr.fitted.coef), c(0,plsr.fitted.coef))
 colnames(reg.coef.mat) = c("ols", "ridge", "lasso", "pcr", "plsr")
-kable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(5,5,5,5,5),type = 'html')
+print(xtable(reg.coef.mat, caption = 'Regression Coefficients for 5 Regression Methods', digits = c(0,5,5,5,5,5)), comment = FALSE, type = "html")
 ```
 
-
-
+## Comparing the MSE of 5 Regression Models 
 
 ```{r results= 'asis', echo = FALSE}
 source("../code/functions/regression-functions.R")
 full.set = read.csv("../data/data-sets/scaled-credit.csv", header = T)
 MSE.val = as.matrix(c("ols" = MSE.ols, "ridge" = MSE.ridge, "lasso" = MSE.lasso, "pcr" = MSE.pcr, "plsr" = MSE.plsr))
 colnames(MSE.val) = "MSE"
-print(xtable(MSE.val, caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE)
+print(xtable(MSE.val, caption = 'MSE and RSS of 5 Regression Methods', digits = 5), comment = FALSE, type = "html")
 ```
 
+## Trend Lines of Coefficient Estimates of 5 Regression Models 
 
 ```{r results= 'asis', echo = FALSE}
 par(mfrow = c(1,1))
@@ -166,4 +192,6 @@ abline(h = 0, lty = 3)
 
 ## Conclusion
 
-Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0. As we explained above, each model has its own feature and can lead to the optimal regression model under different circumstances. Here, for the data set we work on in this project, both our analysis and MSE shows that Lasso Regression model fits the best, followed by OLS and PlS, and appropriate models lead to more accurate prediction.  
+- Combining the coefficients from all five regression models, we notice that only the coefficients for Limit, Rating and StudentYes varies and a number of regressors have coefficients close to 0
+- Each model has its own feature and can lead to the optimal regression model under different circumstances
+- For the data set we work on in this project, both our analysis and MSE shows that Lasso Regression model fits the best, followed by OLS and PlS, and appropriate models lead to more accurate prediction
