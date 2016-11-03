@@ -17,22 +17,24 @@ stat159-fall2016-project2/
     session-info.txt
     session.sh
     code/
+        README.md
         functions/
           ...
         scripts/
           ...
         tests/
           ...
-        README.md
     data/
+        README.md
         data-sets/
           ...
 	      eda-outputs/
 	        ...
 	      regression-data/
 	        ...
-	      README.md
+	      
     images/
+        README.md
 	      boxplot/
 	        ...
 	      conditional-boxplot/
@@ -43,15 +45,15 @@ stat159-fall2016-project2/
 	        ...
 	      regression-plot/
 	        ...
-	      README.md
 	  slides/
 	      slides.html
 	      slides.Rmd
     report/
+        report.Rmd
+    	  report.pdf
         sections/
           ...
-    	  report.Rmd
-    	  report.pdf
+       
 ```
 
 ## Reproduction Steps
