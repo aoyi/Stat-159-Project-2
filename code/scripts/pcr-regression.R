@@ -32,8 +32,6 @@ pcr.full.fit <- pcr(Balance ~ Income + Limit + Rating + Cards + Age + Education
                 + EthnicityCaucasian, data = full.set, scale = FALSE, ncomp = best.m.pcr)
 pcr.fitted.coef <- coef(pcr.full.fit)
 
-redisual_sum_squares(pcr.full.fit)
-
 save(best.m.pcr, MSE.pcr, pcr.full.fit, pcr.fitted.coef, file = "data/regression-data/pcr-model-stats.RData")
 
 
